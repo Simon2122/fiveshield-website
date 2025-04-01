@@ -123,40 +123,47 @@ export default function HomePage() {
 
       {/* --- Features Section --- */}
       <section id="features" className="py-20 bg-gray-800 px-4">
-        <div className="container mx-auto text-center">
-          <h2 className="text-4xl font-bold mb-12 text-purple-400">Why Choose fiveshield?</h2>
-          {/* Grid layout for features, responsive columns */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-            {/* Feature Card 1 */}
-            <div className="bg-gray-700 p-8 rounded-xl shadow-lg transform hover:scale-105 transition duration-300">
-              {/* Icon Placeholder (Inline SVG) */}
-              <div className="text-purple-400 mb-4">
-                 <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mx-auto lucide lucide-shield-check"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/><path d="m9 12 2 2 4-4"/></svg>
-              </div>
-              <h3 className="text-2xl font-semibold mb-3">Advanced DDoS Mitigation</h3>
-              <p className="text-gray-400">Multi-layered protection against complex attacks, keeping your server online 24/7.</p>
-            </div>
-            {/* Feature Card 2 */}
-            <div className="bg-gray-700 p-8 rounded-xl shadow-lg transform hover:scale-105 transition duration-300">
-              {/* Icon Placeholder (Inline SVG) */}
-               <div className="text-purple-400 mb-4">
-                 <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mx-auto lucide lucide-zap"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-              </div>
-              <h3 className="text-2xl font-semibold mb-3">Low Latency Proxy</h3>
-              <p className="text-gray-400">Optimized routing and caching ensures minimal ping increase for players.</p>
-            </div>
-            {/* Feature Card 3 */}
-            <div className="bg-gray-700 p-8 rounded-xl shadow-lg transform hover:scale-105 transition duration-300">
-              {/* Icon Placeholder (Inline SVG) */}
-               <div className="text-purple-400 mb-4">
-                 <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mx-auto lucide lucide-server"><rect width="20" height="8" x="2" y="2" rx="2" ry="2"/><rect width="20" height="8" x="2" y="14" rx="2" ry="2"/><line x1="6" x2="6.01" y1="6" y2="6"/><line x1="6" x2="6.01" y1="18" y2="18"/></svg>
-              </div>
-              <h3 className="text-2xl font-semibold mb-3">FiveM & RedM Optimized</h3>
-              <p className="text-gray-400">Specifically designed for the needs and traffic patterns of FiveM and RedM servers.</p>
-            </div>
+      <div className="container mx-auto text-center">
+        <h2 className="text-4xl font-bold mb-12 text-purple-400">Why Choose fiveshield?</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+          {/* Feature Card 1 */}
+          <div className="flex flex-col items-center p-6 bg-purple-500/5 rounded-lg border border-purple-500/20 hover:border-purple-500/40 transition-colors">
+            <span className="text-4xl mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-life-buoy">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="m4.93 4.93 4.24 4.24"></path>
+                <path d="m14.83 9.17 4.24-4.24"></path>
+                <path d="m14.83 14.83 4.24 4.24"></path>
+                <path d="m9.17 14.83-4.24 4.24"></path>
+                <circle cx="12" cy="12" r="4"></circle>
+              </svg>
+            </span>
+            <div className="tracking-tight inline from-purple-500 to-purple-600 text-2xl font-black bg-clip-text text-transparent bg-gradient-to-b mb-2">Advanced DDoS Mitigation</div>
+            <p className="text-gray-400 text-center font-medium">Multi-layered protection against complex attacks, keeping your server online 24/7.</p>
+          </div>
+          {/* Feature Card 2 */}
+          <div className="flex flex-col items-center p-6 bg-purple-500/5 rounded-lg border border-purple-500/20 hover:border-purple-500/40 transition-colors">
+            <span className="text-4xl mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-shield">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+            </span>
+            <div className="tracking-tight inline from-purple-500 to-purple-600 text-2xl font-black bg-clip-text text-transparent bg-gradient-to-b mb-2">Low Latency Proxy</div>
+            <p className="text-gray-400 text-center font-medium">Optimized routing and caching ensures minimal ping increase for players.</p>
+          </div>
+          {/* Feature Card 3 */}
+          <div className="flex flex-col items-center p-6 bg-purple-500/5 rounded-lg border border-purple-500/20 hover:border-purple-500/40 transition-colors">
+            <span className="text-4xl mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-zap">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+              </svg>
+            </span>
+            <div className="tracking-tight inline from-purple-500 to-purple-600 text-2xl font-black bg-clip-text text-transparent bg-gradient-to-b mb-2">FiveM & RedM Optimized</div>
+            <p className="text-gray-400 text-center font-medium">Specifically designed for the needs and traffic patterns of FiveM and RedM servers.</p>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
       {/* --- How It Works Section --- */}
       <section id="how-it-works" className="py-20 bg-gray-900 px-4">
