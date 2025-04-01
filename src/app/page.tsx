@@ -105,8 +105,8 @@ export default function HomePage() {
               {/* Step 2 */}
               <div className="flex-1 p-6 bg-white/5 rounded-lg border border-white/20 transform hover:scale-105 hover:border-white/40 transition-all duration-300">
                 <div className="bg-white/10 text-white w-12 h-12 rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">2</div>
-                <h3 className="text-xl font-semibold mb-2 text-white">Configure Proxy</h3>
-                <p className="text-gray-400">Update your server connection details to use our dynamic proxy system.</p>
+                <h3 className="text-xl font-semibold mb-2 text-white">Configure Origin Server</h3>
+                <p className="text-gray-400">Update your server connection settings and integrate the resource to utilize our dynamic proxy system.</p>
               </div>
               {/* Step 3 */}
               <div className="flex-1 p-6 bg-white/5 rounded-lg border border-white/20 transform hover:scale-105 hover:border-white/40 transition-all duration-300">
