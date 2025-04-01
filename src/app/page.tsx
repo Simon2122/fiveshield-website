@@ -9,6 +9,8 @@ import React, { useState, useEffect } from 'react';
 export default function HomePage() {
   // State for potential animations or interactions (optional)
   const [scrollY, setScrollY] = useState(0);
+  // Add state for mobile menu
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   // Effect to track scroll position (optional, for parallax/animations)
   useEffect(() => {
@@ -21,17 +23,23 @@ export default function HomePage() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []); // Empty dependency array means this effect runs once on mount and cleanup on unmount
 
+  // Function to close mobile menu when a link is clicked
+  const handleNavLinkClick = () => {
+    setMobileMenuOpen(false);
+  };
+
   return (
     
     <div className="min-h-screen bg-gray-900 text-white font-sans">
         {/* --- Navigation Bar --- */}
         <nav className="sticky top-0 z-50 bg-gray-900 bg-opacity-80 backdrop-blur-md p-4 shadow-lg">
           <div className="container mx-auto flex justify-between items-center">
+            {/* Logo and site name on the left */}
             <div className="flex items-center space-x-2">
-              <img
-                src="/blanc.png"
-                alt="fiveshield Logo"
-                className="h-10 w-10 rounded-md"
+              <img 
+                src="/blanc.png" 
+                alt="fiveshield Logo" 
+                className="h-10 w-10 rounded-md" 
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;
                   target.onerror = null;
@@ -41,18 +49,97 @@ export default function HomePage() {
               />
               <span className="text-2xl font-bold text-white">fiveshield</span>
             </div>
-            <div className="hidden md:flex space-x-6">
+
+            {/* Navigation links in the center - visible on medium and larger screens */}
+            <div className="hidden md:flex space-x-6 flex-grow justify-center items-center">
               <a href="#installation" className="hover:text-white transition-all duration-300">Installation</a>
               <a href="#pricing" className="hover:text-white transition-all duration-300">Pricing</a>
               <a href="#about" className="hover:text-white transition-all duration-300">About</a>
               <a href="#contact" className="hover:text-white transition-all duration-300">Contact</a>
             </div>
-            <div className="md:hidden">
-              <button className="text-white focus:outline-none">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
+
+            {/* Discord icon and Panel button - desktop */}
+            <div className="hidden md:flex items-center space-x-4">
+              {/* Discord icon with animation */}
+              <a 
+                href="https://discord.gg/zucpnTMzHt" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="group flex items-center text-gray-300 hover:text-white transition-colors duration-300"
+              >
+                <svg 
+                  xmlns="http://www.w3.org/2000/svg" 
+                  viewBox="0 0 127.14 96.36" 
+                  className="h-5 w-5 fill-current transition-all duration-300 transform group-hover:rotate-12 group-hover:scale-125"
+                >
+                  <path d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z" />
                 </svg>
+              </a>
+
+              {/* Panel button */}
+              <a 
+                href="#panel" 
+                className="bg-white/5 hover:bg-white/10 border border-white/20 hover:border-white/40 text-white font-bold py-1 px-4 rounded-lg shadow-md transition-all duration-300 transform hover:scale-105"
+              >
+                Panel (Soon)
+              </a>
+            </div>
+
+            {/* Mobile menu button */}
+            <div className="md:hidden flex items-center space-x-3">
+              {/* Discord icon for mobile */}
+              <a 
+                href="https://discord.gg/zucpnTMzHt" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="group flex items-center text-gray-300 hover:text-white transition-colors duration-300"
+              >
+                <svg 
+                  xmlns="http://www.w3.org/2000/svg" 
+                  viewBox="0 0 127.14 96.36" 
+                  className="h-5 w-5 fill-current transition-all duration-300 transform group-hover:rotate-12 group-hover:scale-125"
+                >
+                  <path d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z" />
+                </svg>
+              </a>
+              
+              {/* Menu toggle button */}
+              <button 
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                className="text-white focus:outline-none" 
+                aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+              >
+                {mobileMenuOpen ? (
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                ) : (
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
+                  </svg>
+                )}
               </button>
+            </div>
+          </div>
+          
+          {/* Mobile Navigation Menu - Slide down when open */}
+          <div 
+            className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
+              mobileMenuOpen ? "max-h-96 opacity-100 mt-4" : "max-h-0 opacity-0"
+            }`}
+          >
+            <div className="flex flex-col space-y-3 py-3 pb-5 px-4 bg-gray-800 bg-opacity-95 rounded-lg mt-2">
+              <a href="#installation" onClick={handleNavLinkClick} className="py-2 px-4 hover:bg-gray-700 rounded-md transition-all duration-300">Installation</a>
+              <a href="#pricing" onClick={handleNavLinkClick} className="py-2 px-4 hover:bg-gray-700 rounded-md transition-all duration-300">Pricing</a>
+              <a href="#about" onClick={handleNavLinkClick} className="py-2 px-4 hover:bg-gray-700 rounded-md transition-all duration-300">About</a>
+              <a href="#contact" onClick={handleNavLinkClick} className="py-2 px-4 hover:bg-gray-700 rounded-md transition-all duration-300">Contact</a>
+              <a 
+                href="#panel" 
+                onClick={handleNavLinkClick}
+                className="py-2 px-4 mt-1 mb-1 bg-white/5 hover:bg-white/10 border border-white/20 hover:border-white/40 rounded-md transition-all duration-300 text-center"
+              >
+                Panel (Soon)
+              </a>
             </div>
           </div>
         </nav>
@@ -139,7 +226,7 @@ export default function HomePage() {
                     <div className="text-white-400 font-medium mb-2">Layer 7 Protection</div>
                     {/* Box without overlapping label */}
                     <div className="w-full max-w-xs sm:max-w-sm flex flex-col items-center justify-center bg-purple-500/10 border border-purple-500/30 rounded-lg px-4 py-5">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-purple-400 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-purple-400 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0,0,0,12 2.944a11.955 11.955,0,0,0-8.618 3.04A12.02 12.02,0,0,0,3 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
                       <span className="text-sm text-purple-400">Application Filtering</span>
                       <span className="text-xs text-purple-300 mt-1">Blocks bad requests</span>
                     </div>
@@ -216,7 +303,7 @@ export default function HomePage() {
                   <div className="text-white font-medium mb-2">Your FiveM/RedM Server</div>
                     <div className="w-full max-w-xs sm:max-w-sm h-32 flex flex-col items-center justify-center bg-blue-500/20 border border-blue-500/40 rounded-lg text-center p-2">
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-blue-400 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h14M5 12a2 2 0,0,1-2-2V6a2 2 0,0,1,2-2h14a2 2,0,0,1,2,2v4a2 2,0,0,1-2 2M5 12a2 2,0,0,0-2 2v4a2 2,0,0,0,2 2h14a2 2,0,0,0,2-2v-4a2 2,0,0,0-2-2" />
                       </svg>
                       <span className="text-base md:text-lg font-medium mt-2 text-blue-400">Origin Server</span>
                       <span className="text-xs text-blue-300">Protected</span>
@@ -266,7 +353,7 @@ export default function HomePage() {
                     <div className="text-white font-medium mb-2">Player</div>
                     <div className="w-full max-w-xs sm:max-w-sm flex flex-col items-center justify-center bg-green-500/10 border border-green-500/30 rounded-lg px-4 py-5">
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-green-400 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0,0,1-8 0 4 4 0,0,1,8 0zM12 14a7 7 0,0,0-7 7h14a7 7 0,0,0-7-7z" />
                       </svg>
                       <span className="text-sm text-green-400">Client</span>
                       <span className="text-xs text-green-300 mt-1">Requesting Resources</span>
@@ -290,7 +377,7 @@ export default function HomePage() {
                     <div className="text-white font-medium mb-2">Cloudflare CDN</div>
                     <div className="w-full max-w-xs sm:max-w-sm flex flex-col items-center justify-center bg-orange-500/10 border border-orange-500/30 rounded-lg px-4 py-5">
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-orange-400 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 15a4 4 0,0,0,4 4h9a5 5 0,0,0-.1-9.999 5.002 5.002 0,0,0-9.78 2.096A4.001 4.001,0,0,0,3 15z" />
                       </svg>
                       <span className="text-sm text-orange-400">Global Network</span>
                       <span className="text-xs text-orange-300 mt-1">Fast Content Delivery</span>
@@ -314,7 +401,7 @@ export default function HomePage() {
                     <div className="text-white font-medium mb-2">Your FiveM/RedM Server</div>
                     <div className="w-full max-w-xs sm:max-w-sm flex flex-col items-center justify-center bg-blue-500/10 border border-blue-500/30 rounded-lg px-4 py-5">
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-blue-400 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h14M5 12a2 2 0,0,1-2-2V6a2 2 0,0,1,2-2h14a2 2,0,0,1,2,2v4a2 2,0,0,1-2 2M5 12a2 2,0,0,0-2 2v4a2 2,0,0,0,2 2h14a2 2,0,0,0,2-2v-4a2 2,0,0,0-2-2" />
                       </svg>
                       <span className="text-sm text-blue-400">Origin Server</span>
                       <span className="text-xs text-blue-300 mt-1">Source of content</span>
