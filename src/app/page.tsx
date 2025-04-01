@@ -81,18 +81,6 @@ export default function HomePage() {
 
         {/* Content container */}
         <div className="z-10 relative max-w-4xl">
-          {/* Logo displayed prominently */}
-           <img
-              src="/blanc.png" // Path relative to 'public' folder
-              alt="fiveshield Logo"
-              className="h-24 w-24 mx-auto mb-6 rounded-lg shadow-xl"
-              onError={(e) => {
-                const target = e.target as HTMLImageElement;
-                target.onerror = null;
-                target.src = "https://placehold.co/96x96/FFFFFF/1F2937?text=FS";
-                target.alt = "fiveshield Fallback Logo";
-              }}
-            />
            {/* Main Headline */}
            {/* Gradient text effect */}
           <h1 className="text-5xl md:text-7xl font-extrabold mb-4 leading-tight text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500">
