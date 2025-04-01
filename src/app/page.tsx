@@ -44,7 +44,6 @@ export default function HomePage() {
             <div className="hidden md:flex space-x-6">
               <a href="#installation" className="hover:text-white transition-all duration-300">Installation</a>
               <a href="#pricing" className="hover:text-white transition-all duration-300">Pricing</a>
-              <a href="#architecture" className="hover:text-white transition-all duration-300">Architecture</a>
               <a href="#about" className="hover:text-white transition-all duration-300">About</a>
               <a href="#contact" className="hover:text-white transition-all duration-300">Contact</a>
             </div>
@@ -350,9 +349,25 @@ export default function HomePage() {
             <p className="text-lg text-gray-400 mb-4">
               All player connections pass through an intelligent HTTP proxy that filters malicious traffic and validates legitimate players. Once verified, players are dynamically assigned to a dedicated proxy, distributing traffic efficiently across multiple nodes.
             </p>
+            
+            <div className="flex flex-col items-center mb-6 mt-8 p-6 bg-white/5 rounded-lg border border-white/20 hover:border-white/40 transition-all duration-300 transform hover:scale-102">
+              <h3 className="text-xl font-semibold mb-4 text-white">Recommended Infrastructure</h3>
+              <img 
+                src="/ovhcloud.png" 
+                alt="OVH Cloud" 
+                className="h-16 mb-6 opacity-90 hover:opacity-100 transition-opacity"
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement;
+                  target.onerror = null;
+                  target.style.display = 'none';
+                }}
+              />
+              <p className="text-lg text-gray-400 mb-2 font-bold">
+                We highly recommend using OVH as your server origin provider for maximum security. Our protection system works most effectively with OVH infrastructure, providing an additional layer of resilience against sophisticated attacks.
+              </p>
+            </div>
           </div>
         </section>
-
 
         {/* --- Contact/Call to Action Section --- */}
         <section id="contact" className="py-20 bg-gray-800 text-center px-4">
