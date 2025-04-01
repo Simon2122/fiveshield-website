@@ -217,7 +217,8 @@ export default function HomePage() {
                     <div className="w-full max-w-xs sm:max-w-sm h-32 flex flex-col items-center justify-center bg-blue-500/20 border border-blue-500/40 rounded-lg text-center p-2">
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-blue-400 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2" />
-                      </svg>                      <span className="text-base md:text-lg font-medium mt-2 text-blue-400">Origin Server</span>
+                      </svg>
+                      <span className="text-base md:text-lg font-medium mt-2 text-blue-400">Origin Server</span>
                       <span className="text-xs text-blue-300">Protected</span>
                     </div>
                   </div>
