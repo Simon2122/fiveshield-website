@@ -213,7 +213,7 @@ export default function HomePage() {
 
                   {/* Stage 4: FiveM Server */}
                   <div className="flex flex-col items-center">
-                  <div className="text-white font-medium mb-2">Your FiveM Server</div>
+                  <div className="text-white font-medium mb-2">Your FiveM/RedM Server</div>
                     <div className="w-full max-w-xs sm:max-w-sm h-32 flex flex-col items-center justify-center bg-blue-500/20 border border-blue-500/40 rounded-lg text-center p-2">
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-blue-400 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2" />
@@ -263,7 +263,7 @@ export default function HomePage() {
 
                   {/* FiveM Player */}
                   <div className="flex flex-col items-center relative">
-                    <div className="text-white font-medium mb-2">FiveM Player</div>
+                    <div className="text-white font-medium mb-2">Player</div>
                     <div className="w-full max-w-xs sm:max-w-sm flex flex-col items-center justify-center bg-green-500/10 border border-green-500/30 rounded-lg px-4 py-5">
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-green-400 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
@@ -311,7 +311,7 @@ export default function HomePage() {
 
                   {/* FiveM Server */}
                   <div className="flex flex-col items-center">
-                    <div className="text-white font-medium mb-2">Your FiveM Server</div>
+                    <div className="text-white font-medium mb-2">Your FiveM/RedM Server</div>
                     <div className="w-full max-w-xs sm:max-w-sm flex flex-col items-center justify-center bg-blue-500/10 border border-blue-500/30 rounded-lg px-4 py-5">
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-blue-400 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2" />
@@ -333,7 +333,7 @@ export default function HomePage() {
               </div>
               <div className="p-6 bg-white/5 rounded-lg border border-white/20 transform hover:scale-105 hover:border-blue-500/40 transition-all duration-300">
                 <h3 className="text-xl font-semibold mb-2 text-blue-400">Reduced Server Load</h3>
-                <p className="text-gray-400">With Cloudflare's powerful caching capabilities, your FiveM server experiences dramatically reduced bandwidth usage, allowing it to focus on providing a smooth gameplay experience.</p>
+                <p className="text-gray-400">With Cloudflare's powerful caching capabilities, your FiveM/RedM server experiences dramatically reduced bandwidth usage, allowing it to focus on providing a smooth gameplay experience.</p>
               </div>
             </div>
           </div>
