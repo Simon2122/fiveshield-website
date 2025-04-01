@@ -72,7 +72,7 @@ export default function HomePage() {
             </h1>
             <p className="text-xl md:text-2xl text-gray-400 mb-8 max-w-2xl mx-auto">
               Advanced Multi-Layer DDoS Protection for FiveM & RedM Servers. <br />
-              Low-latency proxy with dynamic assignment and Cloudflare CDN integration.
+              Low-latency proxy with dynamic assignment and Cloudflare caching to reduce bandwidth load.
             </p>
             <div className="space-x-4">
               <a
@@ -122,7 +122,7 @@ export default function HomePage() {
           <div className="container mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-10 md:mb-12 text-white">Protection Architecture</h2>
             <p className="text-lg md:text-xl text-gray-400 mb-12 md:mb-16 max-w-3xl mx-auto">
-              Our advanced multi-layer protection system utilizes Layer 7 filtering, dynamic proxy assignment, and a distributed proxy network to keep your FiveM server safe.
+              Our multi-layer defense system combines intelligent Layer 7 filtering, dynamic proxy allocation, and a distributed proxy network. Each proxy enforces Layer 4 protection, allowing only verified player IPs to connect, ensuring maximum security for your FiveM/RedM server.
             </p>
 
             {/* Architecture Diagram Wrapper */}
