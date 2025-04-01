@@ -22,6 +22,7 @@ export default function HomePage() {
   }, []); // Empty dependency array means this effect runs once on mount and cleanup on unmount
 
   return (
+    
     <div className="min-h-screen bg-gray-900 text-white font-sans">
         {/* --- Navigation Bar --- */}
         <nav className="sticky top-0 z-50 bg-gray-900 bg-opacity-80 backdrop-blur-md p-4 shadow-lg">
@@ -41,8 +42,8 @@ export default function HomePage() {
               <span className="text-2xl font-bold text-white">fiveshield</span>
             </div>
             <div className="hidden md:flex space-x-6">
-              <a href="#features" className="hover:text-white transition-all duration-300">Features</a>
-              <a href="#how-it-works" className="hover:text-white transition-all duration-300">How It Works</a>
+              <a href="#installation" className="hover:text-white transition-all duration-300">Installation</a>
+              <a href="#pricing" className="hover:text-white transition-all duration-300">Pricing</a>
               <a href="#architecture" className="hover:text-white transition-all duration-300">Architecture</a>
               <a href="#about" className="hover:text-white transition-all duration-300">About</a>
               <a href="#contact" className="hover:text-white transition-all duration-300">Contact</a>
@@ -76,7 +77,7 @@ export default function HomePage() {
             </p>
             <div className="space-x-4">
               <a
-                href="#features"
+                href="#installation"
                 className="bg-white/5 hover:bg-white/10 border border-white/20 hover:border-white/40 text-white font-bold py-3 px-8 rounded-lg shadow-lg transition-all duration-300 transform hover:scale-105"
               >
                 Learn More
@@ -92,7 +93,7 @@ export default function HomePage() {
         </section>
 
         {/* --- How It Works Section --- */}
-        <section id="how-it-works" className="py-20 bg-gray-800 px-4">
+        <section id="installation" className="py-20 bg-gray-800 px-4">
           <div className="container mx-auto text-center">
             <h2 className="text-4xl font-bold mb-12 text-white">Simple Setup, Powerful Protection</h2>
             <div className="flex flex-col md:flex-row items-center justify-center gap-10 max-w-4xl mx-auto">
