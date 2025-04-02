@@ -475,10 +475,10 @@ export default function HomePage() {
                   {/* Price */}
                   <div className="md:w-1/4 flex-shrink-0">
                     <div className="flex items-baseline mb-1">
-                      <span className="text-xl font-bold">{servicePricePerMonth.toFixed(1)}€</span>
+                      <span className="text-xl font-bold">{servicePricePerMonth.toFixed(1)}$ USD</span>
                       <span className="ml-1 text-xs text-gray-400">/mois</span>
                     </div>
-                    <p className="text-xs text-gray-500">{calculateServicePricePerDay(playerCount).toFixed(1)}€ × 30 jours</p>
+                    <p className="text-xs text-gray-500">{calculateServicePricePerDay(playerCount).toFixed(1)}$ USD × 30 jours</p>
                   </div>
                   {/* Features */}
                   <div className="md:w-3/4 grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -534,7 +534,7 @@ export default function HomePage() {
                   </div>
                   {/* Price */}
                   <div className="mb-4"> {/* Removed flex for simpler layout */}
-                    <span className="text-2xl font-bold">{sharedPricePerMonth.toFixed(1)}€</span>
+                    <span className="text-2xl font-bold">{sharedPricePerMonth.toFixed(1)}$ USD</span>
                     <span className="text-gray-400 ml-1 text-xs">/mois</span>
                     <p className="text-xs text-gray-500 mt-0.5">Facturé mensuellement, annulez à tout moment</p>
                   </div>
@@ -544,7 +544,7 @@ export default function HomePage() {
                       <Zap className="w-4 h-4 text-indigo-400 mt-0.5 mr-2 flex-shrink-0"/>
                       <div>
                         <p className="text-xs font-medium text-gray-200">Prix par proxy</p>
-                        <p className="text-xs text-gray-400">{calculateSharedProxyPricePerHour(playerCount).toFixed(4)}€/hr</p>
+                        <p className="text-xs text-gray-400">{calculateSharedProxyPricePerHour(playerCount).toFixed(4)}$ USD/hr</p>
                       </div>
                     </div>
                     <div className="flex items-start">
@@ -614,7 +614,7 @@ export default function HomePage() {
                   </div>
                    {/* Price */}
                   <div className="mb-4">
-                    <span className="text-2xl font-bold">{dedicatedPricePerMonth.toFixed(1)}€</span>
+                    <span className="text-2xl font-bold">{dedicatedPricePerMonth.toFixed(1)}$ USD</span>
                     <span className="text-gray-400 ml-1 text-xs">/mois</span>
                     <p className="text-xs text-gray-500 mt-0.5">Facturé mensuellement, annulez à tout moment</p>
                   </div>
@@ -624,7 +624,7 @@ export default function HomePage() {
                       <Zap className="w-4 h-4 text-indigo-400 mt-0.5 mr-2 flex-shrink-0"/>
                       <div>
                         <p className="text-xs font-medium text-gray-200">Prix par proxy</p>
-                        <p className="text-xs text-gray-400 font-bold">{calculateDedicatedProxyPricePerHour(playerCount).toFixed(4)}€/hr</p>
+                        <p className="text-xs text-gray-400 font-bold">{calculateDedicatedProxyPricePerHour(playerCount).toFixed(4)}$ USD/hr</p>
                       </div>
                     </div>
                     <div className="flex items-start">
@@ -692,7 +692,7 @@ export default function HomePage() {
                   <div className="flex items-center gap-4 flex-shrink-0 mt-3 md:mt-0">
                     <div className="text-right">
                       <p className="text-xs text-gray-400 mb-0">Prix mensuel total</p>
-                      <p className="text-2xl font-bold text-indigo-300">{totalPricePerMonth.toFixed(1)}€</p>
+                      <p className="text-2xl font-bold text-indigo-300">{totalPricePerMonth.toFixed(1)}$ USD</p>
                     </div>
                     <button
                       className="inline-flex items-center justify-center px-6 h-10 text-sm gap-2 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white shadow-md hover:shadow-lg hover:shadow-indigo-500/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900 focus-visible:ring-indigo-500"
