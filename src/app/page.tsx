@@ -226,7 +226,7 @@ export default function HomePage() {
                     <div className="text-white-400 font-medium mb-2">Layer 7 Protection</div>
                     {/* Box without overlapping label */}
                     <div className="w-full max-w-xs sm:max-w-sm flex flex-col items-center justify-center bg-purple-500/10 border border-purple-500/30 rounded-lg px-4 py-5">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-purple-400 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0,0,0,12 2.944a11.955 11.955,0,0,0-8.618 3.04A12.02 12.02,0,0,0,3 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-purple-400 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955,0,0,0,12 2.944a11.955 11.955,0,0,0-8.618 3.04A12.02 12.02,0,0,0,3 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
                       <span className="text-sm text-purple-400">Application Filtering</span>
                       <span className="text-xs text-purple-300 mt-1">Blocks bad requests</span>
                     </div>
@@ -457,25 +457,143 @@ export default function HomePage() {
         </section>
 
         {/* --- Contact/Call to Action Section --- */}
-        <section id="contact" className="py-20 bg-gray-800 text-center px-4">
-          <div className="container mx-auto max-w-2xl p-8 bg-white/5 rounded-lg border border-white/20">
-            <h2 className="text-4xl font-bold mb-6 text-white">Ready to Secure Your Server?</h2>
-            <p className="text-xl text-gray-400 mb-8">
-              Get started with fiveshield today and protect your community with our advanced multi-layer DDoS protection.
-            </p>
-            <a
-              href="#"
-              className="bg-white/5 hover:bg-white/10 border border-white/20 hover:border-white/40 text-white font-bold py-3 px-10 rounded-lg shadow-lg transition-all duration-300 transform hover:scale-105 text-lg"
-            >
-              Protect My Server Now
-            </a>
+        <section id="contact" className="py-20 px-4 relative">
+          {/* Gradient background overlay */}
+          <div className="absolute inset-0 bg-gradient-to-b from-gray-800 to-gray-900 opacity-90"></div>
+          
+          <div className="container mx-auto max-w-4xl relative z-10">
+            {/* Section header with animated underline */}
+            <div className="text-center mb-12">
+              <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white tracking-tight">Ready to Secure Your Server?</h2>
+              <div className="w-24 h-1 bg-gradient-to-r from-purple-500 to-blue-500 mx-auto rounded-full"></div>
+            </div>
+            
+            {/* Main CTA card with glass effect */}
+            <div className="backdrop-blur-sm bg-white/5 rounded-2xl border border-white/10 shadow-xl p-8 md:p-10 transform transition-all duration-500 hover:border-white/20">
+              <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+                <div className="text-left max-w-xl">
+                  <h3 className="text-2xl md:text-3xl font-bold mb-4 text-white">Join Our Protected Network</h3>
+                  <p className="text-lg text-gray-300 mb-6">
+                    Get enterprise-grade DDoS protection for your FiveM/RedM server with our advanced multi-layer system. Keep your community online, even during attacks.
+                  </p>
+                  <ul className="space-y-2 mb-8 text-gray-400">
+                    <li className="flex items-center">
+                      <svg className="w-5 h-5 text-green-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7"></path>
+                      </svg>
+                      Simple integration with existing servers
+                    </li>
+                    <li className="flex items-center">
+                      <svg className="w-5 h-5 text-green-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7"></path>
+                      </svg>
+                      24/7 active protection and monitoring
+                    </li>
+                    <li className="flex items-center">
+                      <svg className="w-5 h-5 text-green-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7"></path>
+                      </svg>
+                      Optimized content delivery via Cloudflare
+                    </li>
+                  </ul>
+                </div>
+                
+                <div className="w-full md:w-auto flex flex-col items-center">
+                  <a
+                    href="https://discord.gg/zucpnTMzHt"
+                    className="w-full md:w-auto bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-bold py-4 px-8 rounded-xl shadow-lg transition-all duration-300 transform hover:scale-105 hover:shadow-blue-900/30 text-center text-lg mb-4"
+                  >
+                    Get Started Now
+                  </a>
+                  <span className="text-gray-400 text-sm">No credit card required to start</span>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
         {/* --- Footer --- */}
-        <footer className="py-8 bg-gray-900 text-center text-gray-400">
+        <footer className="bg-gray-900 pt-16 pb-8 px-4 border-t border-gray-800">
           <div className="container mx-auto">
-            <p>&copy; {new Date().getFullYear()} fiveshield. All rights reserved.</p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+              {/* Company info */}
+              <div>
+                <div className="flex items-center space-x-2 mb-6">
+                  <img 
+                    src="/blanc.png" 
+                    alt="fiveshield Logo" 
+                    className="h-8 w-8 rounded-md" 
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      target.onerror = null;
+                      target.src = "https://placehold.co/40x40/FFFFFF/1F2937?text=FS";
+                      target.alt = "fiveshield Fallback Logo";
+                    }}
+                  />
+                  <span className="text-xl font-bold text-white">fiveshield</span>
+                </div>
+                <p className="text-gray-400 mb-4">
+                  Advanced DDoS protection built specifically for FiveM and RedM server communities.
+                </p>
+                <div className="flex space-x-4">
+                  {/* Discord */}
+                  <a href="https://discord.gg/zucpnTMzHt" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 127.14 96.36" className="h-6 w-6 fill-current">
+                      <path d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z" />
+                    </svg>
+                  </a>
+                  {/* Twitter/X placeholder */}
+                  <a href="#" className="text-gray-400 hover:text-white transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.15l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path>
+                    </svg>
+                  </a>
+                  {/* GitHub placeholder */}
+                  <a href="#" className="text-gray-400 hover:text-white transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+              
+              {/* Quick Links */}
+              <div>
+                <h3 className="text-lg font-semibold text-white mb-6">Quick Links</h3>
+                <ul className="space-y-3">
+                  <li><a href="#installation" className="text-gray-400 hover:text-white transition-colors">Installation</a></li>
+                  <li><a href="#architecture" className="text-gray-400 hover:text-white transition-colors">Protection System</a></li>
+                  <li><a href="#caching" className="text-gray-400 hover:text-white transition-colors">Caching System</a></li>
+                  <li><a href="#about" className="text-gray-400 hover:text-white transition-colors">About Us</a></li>
+                </ul>
+              </div>
+              
+              {/* Contact */}
+              <div>
+                <h3 className="text-lg font-semibold text-white mb-6">Contact Us</h3>
+                <p className="text-gray-400 mb-4">
+                  Join our Discord server for customer support and to learn more about our services.
+                </p>
+                <a 
+                  href="https://discord.gg/zucpnTMzHt" 
+                  className="inline-flex items-center space-x-2 text-blue-400 hover:text-blue-300 transition-colors"
+                >
+                  <span>Join Discord</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+            
+            {/* Copyright bar */}
+            <div className="pt-8 mt-8 border-t border-gray-800 text-center sm:flex sm:justify-between sm:text-left">
+              <p className="text-gray-500">&copy; {new Date().getFullYear()} fiveshield. All rights reserved.</p>
+              <div className="mt-4 sm:mt-0">
+                <a href="#" className="text-gray-500 hover:text-gray-400 mr-4">Privacy Policy</a>
+                <a href="#" className="text-gray-500 hover:text-gray-400">Terms of Service</a>
+              </div>
+            </div>
           </div>
         </footer>
     </div>
