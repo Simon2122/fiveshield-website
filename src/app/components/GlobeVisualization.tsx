@@ -24,12 +24,12 @@ function Scene() {
 
   useFrame(({ clock, pointer }) => {
     if (groupRef.current) {
-        // Rotation logic
-        groupRef.current.rotation.y = clock.getElapsedTime() * 0.025;
-        const xRot = (pointer.y * Math.PI * 0.04);
-        const yRot = (pointer.x * Math.PI * 0.04);
-        groupRef.current.rotation.x = THREE.MathUtils.lerp(groupRef.current.rotation.x, xRot, 0.03);
-        groupRef.current.rotation.y += THREE.MathUtils.lerp(0, yRot, 0.03);
+        // Rotation logic with increased movement
+        groupRef.current.rotation.y = clock.getElapsedTime() * 0.1;
+        const xRot = pointer.y * Math.PI * 0.08;
+        const yRot = pointer.x * Math.PI * 0.08;
+        groupRef.current.rotation.x = THREE.MathUtils.lerp(groupRef.current.rotation.x, xRot, 0.05);
+        groupRef.current.rotation.y += THREE.MathUtils.lerp(0, yRot, 0.05);
     }
   });
 
