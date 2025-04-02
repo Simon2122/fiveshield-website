@@ -29,21 +29,51 @@ const MAX_PLAYERS = 1024;
 
 // --- Pricing Logic Functions (can stay outside if they don't depend on hooks/state) ---
 const calculateServicePricePerDay = (players: number): number => {
-    // Example: Scaled pricing - adjust logic as needed
-    if (players <= 100) return 0.9;
-    if (players <= 300) return 1.5;
-    if (players <= 600) return 2.5;
-    return 4.0;
+  // Base pricing tiers
+  let basePricePerDay = 0;
+  if (players <= 100) basePricePerDay = 0.9;
+  else if (players <= 300) basePricePerDay = 1.5;
+  else if (players <= 600) basePricePerDay = 2.5;
+  else basePricePerDay = 4.0;
+
+  // Cache storage cost adjusted based on number of players
+  // Current values are average for a server with 170 players.
+  // For higher players the cache cost increases proportionally.
+  const monthlyCacheCost = 150 * 0.015; // = 2.25 USD/month at 170 players
+  const dailyCacheCost = (monthlyCacheCost / 30) * (players / 170); // scales with player count
+
+  // API operations costs (assumed daily usage):
+  // 400,000 read requests @ 0.36 USD per 1,000,000 reads
+  // 500 write requests @ 4.50 USD per 1,000,000 writes
+  const dailyReadOps = 400000;
+  const dailyWriteOps = 500;
+  const costPerRead = 0.36 / 1_000_000;
+  const costPerWrite = 4.5 / 1_000_000;
+  const dailyReadCost = dailyReadOps * costPerRead;
+  const dailyWriteCost = dailyWriteOps * costPerWrite;
+
+  // Sum up all daily costs
+  let dailyCost = basePricePerDay + dailyCacheCost + dailyReadCost + dailyWriteCost;
+
+  // Add service profit margin (50% profit)
+  const profitMargin = 0.5;
+  dailyCost = dailyCost * (1 + profitMargin);
+
+  return dailyCost;
 };
 
 const calculateSharedProxyPricePerHour = (players: number): number => {
     // Example: Flat or slightly scaled
-    return 0.008 + (players / MAX_PLAYERS) * 0.002; // Small increase with players
+    const proxies = Math.ceil(players / 14);
+    const costPerProxy = 0.0035;
+    const ratePerProxy = 1.50
+  return proxies * costPerProxy * ratePerProxy;
 };
 
 const calculateDedicatedProxyPricePerHour = (players: number): number => {
-    // Example: Flat or slightly scaled
-    return 0.012 + (players / MAX_PLAYERS) * 0.005; // Higher base + scales more
+  const proxies = Math.ceil(players / 15);
+  const costPerProxy = 0.011;
+  return proxies * costPerProxy;
 };
 // --- End Pricing Logic Functions ---
 
@@ -543,14 +573,14 @@ export default function HomePage() {
                     <div className="flex items-start">
                       <Zap className="w-4 h-4 text-indigo-400 mt-0.5 mr-2 flex-shrink-0"/>
                       <div>
-                        <p className="text-xs font-medium text-gray-200">Prix par proxy</p>
+                        <p className="text-xs font-medium text-gray-200">Tarification des proxys</p>
                         <p className="text-xs text-gray-400">{calculateSharedProxyPricePerHour(playerCount).toFixed(4)}$ USD/hr</p>
                       </div>
                     </div>
                     <div className="flex items-start">
                        <Globe className="w-4 h-4 text-indigo-400 mt-0.5 mr-2 flex-shrink-0"/>
                        <div>
-                        <p className="text-xs font-medium text-gray-200">Load-balancing</p>
+                        <p className="text-xs font-medium text-gray-200">Dynamic Assignment</p>
                         <p className="text-xs text-gray-400">Light</p>
                       </div>
                     </div>
@@ -623,14 +653,14 @@ export default function HomePage() {
                     <div className="flex items-start">
                       <Zap className="w-4 h-4 text-indigo-400 mt-0.5 mr-2 flex-shrink-0"/>
                       <div>
-                        <p className="text-xs font-medium text-gray-200">Prix par proxy</p>
+                        <p className="text-xs font-medium text-gray-200">Tarification des proxys</p>
                         <p className="text-xs text-gray-400 font-bold">{calculateDedicatedProxyPricePerHour(playerCount).toFixed(4)}$ USD/hr</p>
                       </div>
                     </div>
                     <div className="flex items-start">
                        <Globe className="w-4 h-4 text-indigo-400 mt-0.5 mr-2 flex-shrink-0"/>
                        <div>
-                        <p className="text-xs font-medium text-gray-200">Load-balancing</p>
+                        <p className="text-xs font-medium text-gray-200">Dynamic Assignment</p>
                         <p className="text-xs text-gray-400 font-bold">Personnalisé</p>
                       </div>
                     </div>
