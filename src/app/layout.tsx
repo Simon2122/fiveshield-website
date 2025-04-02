@@ -1,32 +1,32 @@
+// src/app/layout.tsx
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
+import { Inter } from "next/font/google"; // Using Inter font (or choose another)
+import "./globals.css"; // Import global styles
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
+// Configure the Inter font
+const inter = Inter({ subsets: ["latin"] });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
+// Define metadata for the site (SEO and browser tab info)
 export const metadata: Metadata = {
-  title: "Fiveshield",
-  description: "Best DDOS protection for your FiveM/RedM server",
+  title: "fiveshield - Advanced DDoS Protection for FiveM & RedM",
+  description: "Multi-Layer DDoS protection, low-latency proxy, Cloudflare caching, and dynamic assignment specifically designed for FiveM and RedM servers.",
+  // You can add more metadata here:
+  // icons: { icon: '/favicon.ico' }, // Example favicon
+  // openGraph: { ... }, // For social sharing previews
+  // twitter: { ... },
 };
 
+// Define the Root Layout component
 export default function RootLayout({
   children,
-}: Readonly<{
+}: Readonly<{ // Use Readonly<{ ... }> for children prop type
   children: React.ReactNode;
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      {/* Apply the font class to the body */}
+      <body className={`${inter.className} antialiased`}>
+        {/* Render the page content passed as children */}
         {children}
       </body>
     </html>
