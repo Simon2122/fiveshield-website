@@ -453,10 +453,10 @@ export default function HomePage() {
                     <div className="mt-10 p-6 bg-gradient-to-r from-white/5 to-white/10 rounded-lg border border-white/15 transform transition-all duration-300 hover:shadow-lg hover:border-white/25">
                         <h3 className="text-xl font-semibold mb-4 text-white flex items-center justify-center"><ShieldCheck size={24} className="mr-2 text-green-400"/>Recommended Infrastructure</h3>
                         <img
-                            src="/ovhcloud.png" // Path in public folder
+                            src="/ovhcloud.png"
                             alt="OVH Cloud Logo"
-                            className="h-12 mx-auto mb-5 opacity-80 hover:opacity-100 transition-opacity duration-300"
-                            width={180} // Provide estimate for layout shift prevention
+                            className="h-12 mx-auto mb-5 opacity-80 hover:opacity-100 transition-opacity duration-300 object-contain"
+                            width={180}
                             height={48}
                             onError={handleOvhImageError}
                         />
