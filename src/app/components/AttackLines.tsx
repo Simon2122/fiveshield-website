@@ -59,12 +59,18 @@ let lineIdCounter = 0;
 export function AttackLines() {
   const [lines, setLines] = useState<AttackLineData[]>([]);
   const gradientVertexColors = useMemo(() => createGradientColors(), []);
+  
+  // New: use a ref for mutable line data and a frame counter
+  const linesRef = useRef<AttackLineData[]>(lines);
+  const frameCounter = useRef(0);
+  const FRAME_UPDATE_INTERVAL = 4; // update state every 4 frames
 
   useFrame(({ clock }) => {
+    frameCounter.current++;
     const now = clock.elapsedTime;
 
-    // Update existing lines
-    const updatedLines = lines
+    // Update using the mutable ref
+    const updatedLines = linesRef.current
       .map(line => {
         const age = now - line.birthTime;
         const lifeProgress = Math.min(age / LINE_LIFETIME, 1);
@@ -104,7 +110,11 @@ export function AttackLines() {
       });
     }
 
-    setLines(updatedLines);
+    // Update ref and, every few frames, update state to re-render
+    linesRef.current = updatedLines;
+    if (frameCounter.current % FRAME_UPDATE_INTERVAL === 0) {
+      setLines(updatedLines);
+    }
   });
 
   return (
