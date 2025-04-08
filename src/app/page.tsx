@@ -20,17 +20,17 @@ const GlobeVisualization = lazy(() => import('./components/GlobeVisualization'))
 
 // --- Constants --- (Keep outside)
 const MIN_PLAYERS = 20;
-const MAX_PLAYERS = 1024;
+const MAX_PLAYERS = 2048;
 const CURRENT_YEAR = new Date().getFullYear();
 
 // --- Pricing Logic Functions (can stay outside if they don't depend on hooks/state) ---
 const calculateServicePricePerDay = (players: number): number => {
   // Base pricing tiers
   let basePricePerDay = 0;
-  if (players <= 100) basePricePerDay = 0.9;
-  else if (players <= 300) basePricePerDay = 1.5;
-  else if (players <= 600) basePricePerDay = 2.5;
-  else basePricePerDay = 4.0;
+  if (players <= 100) basePricePerDay = 2.0;
+  else if (players <= 300) basePricePerDay = 3.5;
+  else if (players <= 600) basePricePerDay = 5.0;
+  else basePricePerDay = 7.5;
 
   // Cache storage cost adjusted based on number of players
   const monthlyCacheCost = 150 * 0.015; // = 2.25 USD/month at 170 players
@@ -48,22 +48,22 @@ const calculateServicePricePerDay = (players: number): number => {
   let dailyCost = basePricePerDay + dailyCacheCost + dailyReadCost + dailyWriteCost;
 
   // Add service profit margin (50% profit)
-  const profitMargin = 0.5;
-  dailyCost = dailyCost * (1 + profitMargin);
+  const profitMargin = 1.65;
+  dailyCost = dailyCost * profitMargin;
 
   return dailyCost;
 };
 
 const calculateSharedProxyPricePerHour = (players: number): number => {
-    const proxies = Math.ceil(players / 5);
-    const costPerProxy = 0.001;
-    const ratePerProxy = 1.50
+    const proxies = Math.ceil(players / 20);
+    const costPerProxy = 0.008;
+    const ratePerProxy = 1.25;
   return proxies * costPerProxy * ratePerProxy;
 };
 
 const calculateDedicatedProxyPricePerHour = (players: number): number => {
   const proxies = Math.max(Math.ceil(players / 20), 5);
-  const costPerProxy = 0.011;
+  const costPerProxy = 0.013;
   return proxies * costPerProxy;
 };
 // --- End Pricing Logic Functions ---
