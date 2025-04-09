@@ -68,7 +68,17 @@
       "summaryWarning": "Your current plan (<0>{{plan}}</0>) might not be optimal. The <1>{{recommendedPlan}}</1> plan is recommended for <2>{{playerCount}}</2> players.",
       "summarySelected": "The <0>{{plan}}</0> plan is selected for your estimate of <1>{{playerCount}}</1> players.",
       "totalPriceLabel": "Total Monthly Price",
-      "startNowButton": "Get Started"
+      "startNowButton": "Get Started",
+      "bestForSmall": "Best for small servers",
+      "bestForLarge": "Best for large servers",
+      "mostAffordable": "Most affordable",
+      "bestPerformance": "Best performance",
+      "noCommitment": "No long-term commitment",
+      "proxyPricingTooltip": "Price charged per hour for each proxy server based on your player count",
+      "idealFor": "Ideal for",
+      "largerServers": "larger servers",
+      "playersLower": "players",
+      "estimatedBilling": "Monthly estimated billing based on current settings"
     },
     "architecture": {
       "title": "Protection Architecture",
