@@ -774,12 +774,14 @@ export default function HomePage() {
                         <p className="text-xs text-gray-400 mb-0">{t('pricing.totalPriceLabel')}</p>
                         <p className="text-2xl font-bold text-indigo-300">{totalPricePerMonth.toFixed(1)}$ USD</p>
                       </div>
-                      <button
+                      <a
+                        href="/panel?source=getstarted"
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="inline-flex items-center justify-center px-6 h-10 text-sm gap-2 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white shadow-md hover:shadow-lg hover:shadow-indigo-500/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900 focus-visible:ring-indigo-500"
-                        type="button"
                       >
-                        {t('pricing.startNowButton')}
-                      </button>
+                        {t('pricing.startNowButton')} <ExternalLink className="h-4 w-4 ml-0.5" />
+                      </a>
                     </div>
                   </div>
                 </div>
