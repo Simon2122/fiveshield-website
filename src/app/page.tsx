@@ -546,192 +546,192 @@ export default function HomePage() {
                 </div>
               </motion.div>
 
-              {/* --- Shared Proxies Plan --- */}
-              <motion.div variants={fadeIn} className="col-span-12 md:col-span-6">
+                {/* --- Shared Proxies Plan --- */}
+                <motion.div variants={fadeIn} className="col-span-12 md:col-span-6">
                 <div className={`flex flex-col text-white box-border outline-none shadow-lg transition-all duration-300 motion-reduce:transition-none rounded-xl relative overflow-hidden h-full border ${selectedPlan === 'shared' ? 'border-indigo-500 bg-indigo-900/20 ring-2 ring-indigo-500/50' : 'border-white/10 bg-gray-800/50 hover:bg-gray-800/70 hover:border-white/20'}`}>
                   <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-indigo-500/40 to-purple-500/40"></div>
                   <div className="p-4 md:p-6 flex-grow">
-                    <div className="flex items-start sm:items-center gap-3 mb-4">
-                      <div className="p-2 rounded-full bg-indigo-500/20 text-indigo-400 flex-shrink-0 mt-0.5 sm:mt-0"> <Shield size={16} /> </div>
-                      <div> 
-                        <div className="flex items-center"> 
-                          <h3 className="text-sm font-bold mr-1 text-gray-100">{t('pricing.sharedPlanTitle')}</h3> 
-                          <span className="bg-blue-500/20 text-blue-300 text-xs px-2 py-0.5 rounded-full">{t('pricing.bestForSmall')}</span>
-                        </div> 
-                        <p className="text-xs text-gray-300">{t('pricing.sharedPlanDesc')}</p> 
-                      </div>
-                    </div>
-                    <div className="mb-4 bg-indigo-950/30 p-3 rounded-lg">
-                      <span className="text-2xl font-bold">{sharedPricePerMonth.toFixed(1)}$ USD</span>
-                      <span className="text-gray-300 ml-1 text-xs">{t('pricing.monthlySuffix')}</span>
-                      <div className="mt-1 flex items-center">
-                        <div className="bg-green-500/20 px-1.5 py-0.5 rounded text-green-400 text-xs mr-2">{t('pricing.mostAffordable')}</div>
-                        <p className="text-xs text-gray-300">{t('pricing.noCommitment')}</p>
-                      </div>
-                    </div>
-                    <div className="space-y-3 mb-4">
-                      <div className="flex items-start"> 
-                        <Zap className="w-4 h-4 text-indigo-400 mt-0.5 mr-2 flex-shrink-0"/> 
-                        <div className="group relative"> 
-                          <p className="text-xs font-medium text-gray-200 flex items-center">
-                            {t('pricing.proxyPricingLabel')}
-                            <CircleHelp className="h-3.5 w-3.5 ml-1 text-gray-500 cursor-help" />
-                          </p> 
-                          <div className="invisible group-hover:visible absolute left-0 bottom-full mb-2 w-48 bg-gray-900 p-2 rounded border border-gray-700 text-xs text-gray-300 shadow-lg z-10">
-                            {t('pricing.proxyPricingTooltip')}
-                          </div>
-                          <p className="text-xs text-gray-300">
-                            <span className="font-medium text-white">{calculateSharedProxyPricePerHour(playerCount).toFixed(4)}$ </span>
-                            {t('pricing.proxyPricingUnit')}
-                          </p> 
-                        </div> 
-                      </div>
-                      <div className="flex items-start"> 
-                        <Globe className="w-4 h-4 text-indigo-400 mt-0.5 mr-2 flex-shrink-0"/> 
-                        <div> 
-                          <p className="text-xs font-medium text-gray-200">{t('pricing.dynamicAssignmentLabel')}</p> 
-                          <p className="text-xs text-gray-300">
-                            <Check className="inline h-3 w-3 text-green-400 mr-1" />
-                            {t('pricing.dynamicAssignmentShared')}
-                          </p> 
-                        </div> 
-                      </div>
-                      <div className="flex items-start"> 
-                        <Shield className="w-4 h-4 text-indigo-400 mt-0.5 mr-2 flex-shrink-0"/> 
-                        <div> 
-                          <p className="text-xs font-medium text-gray-200">{t('pricing.protectionLabel')}</p> 
-                          <p className="text-xs text-gray-300">
-                            <Check className="inline h-3 w-3 text-green-400 mr-1" />
-                            {t('pricing.protectionShared')}
-                          </p> 
-                        </div> 
-                      </div>
-                      <div className="flex items-start"> 
-                        <Globe className="w-4 h-4 text-indigo-400 mt-0.5 mr-2 flex-shrink-0"/> 
-                        <div> 
-                          <p className="text-xs font-medium text-gray-200">{t('pricing.regionsLabel')}</p> 
-                          <p className="text-xs text-gray-300">{t('pricing.regionsShared')}</p> 
-                        </div> 
-                      </div>
-                      <div className="flex items-start"> 
-                        <Server className="w-4 h-4 text-indigo-400 mt-0.5 mr-2 flex-shrink-0"/> 
-                        <div> 
-                          <p className="text-xs font-medium text-gray-200">{t('pricing.controlLabel')}</p> 
-                          <p className="text-xs text-gray-300">{t('pricing.controlShared')}</p> 
-                        </div> 
-                      </div>
-                      
-                      <div className="pt-2 mt-2 border-t border-white/10">
-                        <p className="text-xs text-center text-blue-300">
-                          {t('pricing.idealFor')} <span className="font-medium">20-100</span> {t('pricing.playersLower')}
-                        </p>
-                      </div>
+                  <div className="flex items-start sm:items-center gap-3 mb-4">
+                    <div className="p-2 rounded-full bg-indigo-500/20 text-indigo-400 flex-shrink-0 mt-0.5 sm:mt-0"> <Shield size={16} /> </div>
+                    <div> 
+                    <div className="flex items-center"> 
+                      <h3 className="text-sm font-bold mr-1 text-gray-100">{t('pricing.sharedPlanTitle')}</h3> 
+                      <span className="bg-blue-500/20 text-blue-300 text-xs px-2 py-0.5 rounded-full">{t('pricing.bestForSmall')}</span>
+                    </div> 
+                    <p className="text-xs text-gray-300">{t('pricing.sharedPlanDesc')}</p> 
                     </div>
                   </div>
+                  <div className={`mb-4 ${selectedPlan === 'shared' ? 'bg-indigo-900/20' : 'bg-gray-800/50'} p-3 rounded-lg`}>
+                    <span className="text-2xl font-bold">{sharedPricePerMonth.toFixed(1)}$ USD</span>
+                    <span className="text-gray-300 ml-1 text-xs">{t('pricing.monthlySuffix')}</span>
+                    <div className="mt-1 flex items-center">
+                    <div className="bg-green-500/20 px-1.5 py-0.5 rounded text-green-400 text-xs mr-2">{t('pricing.mostAffordable')}</div>
+                    <p className="text-xs text-gray-300">{t('pricing.noCommitment')}</p>
+                    </div>
+                  </div>
+                  <div className="space-y-3 mb-4">
+                    <div className="flex items-start"> 
+                    <Zap className="w-4 h-4 text-indigo-400 mt-0.5 mr-2 flex-shrink-0"/> 
+                    <div className="group relative"> 
+                      <p className="text-xs font-medium text-gray-200 flex items-center">
+                      {t('pricing.proxyPricingLabel')}
+                      <CircleHelp className="h-3.5 w-3.5 ml-1 text-gray-500 cursor-help" />
+                      </p> 
+                      <div className="invisible group-hover:visible absolute left-0 bottom-full mb-2 w-48 bg-gray-900 p-2 rounded border border-gray-700 text-xs text-gray-300 shadow-lg z-10">
+                      {t('pricing.proxyPricingTooltip')}
+                      </div>
+                      <p className="text-xs text-gray-300">
+                      <span className="font-medium text-white">{calculateSharedProxyPricePerHour(playerCount).toFixed(4)}$ </span>
+                      {t('pricing.proxyPricingUnit')}
+                      </p> 
+                    </div> 
+                    </div>
+                    <div className="flex items-start"> 
+                    <Globe className="w-4 h-4 text-indigo-400 mt-0.5 mr-2 flex-shrink-0"/> 
+                    <div> 
+                      <p className="text-xs font-medium text-gray-200">{t('pricing.dynamicAssignmentLabel')}</p> 
+                      <p className="text-xs text-gray-300">
+                      <Check className="inline h-3 w-3 text-green-400 mr-1" />
+                      {t('pricing.dynamicAssignmentShared')}
+                      </p> 
+                    </div> 
+                    </div>
+                    <div className="flex items-start"> 
+                    <Shield className="w-4 h-4 text-indigo-400 mt-0.5 mr-2 flex-shrink-0"/> 
+                    <div> 
+                      <p className="text-xs font-medium text-gray-200">{t('pricing.protectionLabel')}</p> 
+                      <p className="text-xs text-gray-300">
+                      <Check className="inline h-3 w-3 text-green-400 mr-1" />
+                      {t('pricing.protectionShared')}
+                      </p> 
+                    </div> 
+                    </div>
+                    <div className="flex items-start"> 
+                    <Globe className="w-4 h-4 text-indigo-400 mt-0.5 mr-2 flex-shrink-0"/> 
+                    <div> 
+                      <p className="text-xs font-medium text-gray-200">{t('pricing.regionsLabel')}</p> 
+                      <p className="text-xs text-gray-300">{t('pricing.regionsShared')}</p> 
+                    </div> 
+                    </div>
+                    <div className="flex items-start"> 
+                    <Server className="w-4 h-4 text-indigo-400 mt-0.5 mr-2 flex-shrink-0"/> 
+                    <div> 
+                      <p className="text-xs font-medium text-gray-200">{t('pricing.controlLabel')}</p> 
+                      <p className="text-xs text-gray-300">{t('pricing.controlShared')}</p> 
+                    </div> 
+                    </div>
+                    
+                    <div className="pt-2 mt-2 border-t border-white/10">
+                    <p className="text-xs text-center text-blue-300">
+                      {t('pricing.idealFor')} <span className="font-medium">20-100</span> {t('pricing.playersLower')}
+                    </p>
+                    </div>
+                  </div>
+                  </div>
                   <button
-                    className={`w-full rounded-t-none rounded-b-lg h-10 text-center font-semibold text-sm transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-800 focus-visible:ring-indigo-500 ${selectedPlan === 'shared' ? 'bg-indigo-600 text-white cursor-default' : 'bg-gray-700/50 text-gray-300 hover:bg-indigo-700 hover:text-white'}`}
-                    type="button" onClick={() => handlePlanSelect('shared')} disabled={selectedPlan === 'shared'}
+                  className={`w-full rounded-t-none rounded-b-lg h-10 text-center font-semibold text-sm transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-800 focus-visible:ring-indigo-500 ${selectedPlan === 'shared' ? 'bg-indigo-600 text-white cursor-default' : 'bg-gray-700/50 text-gray-300 hover:bg-indigo-700 hover:text-white'}`}
+                  type="button" onClick={() => handlePlanSelect('shared')} disabled={selectedPlan === 'shared'}
                   >
-                    {selectedPlan === 'shared' ? t('pricing.currentPlan') : t('pricing.selectPlan')}
+                  {selectedPlan === 'shared' ? t('pricing.currentPlan') : t('pricing.selectPlan')}
                   </button>
                 </div>
-              </motion.div>
+                </motion.div>
 
-              {/* --- Dedicated Proxies Plan --- */}
-              <motion.div variants={fadeIn} className="col-span-12 md:col-span-6">
+                {/* --- Dedicated Proxies Plan --- */}
+                <motion.div variants={fadeIn} className="col-span-12 md:col-span-6">
                  <div className={`flex flex-col text-white box-border outline-none shadow-xl transition-all duration-300 motion-reduce:transition-none rounded-xl relative overflow-hidden h-full border ${selectedPlan === 'dedicated' ? 'border-indigo-500 bg-indigo-900/20 ring-2 ring-indigo-500/50 shadow-indigo-500/20' : 'border-white/10 bg-gray-800/50 hover:bg-gray-800/70 hover:border-white/20'}`}>
                    {recommendedPlan === 'dedicated' && ( 
-                     <div className="absolute -right-11 top-6 bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-10 py-0.5 rotate-45 text-xs font-bold shadow-md"> 
-                       {t('pricing.recommendedTag')} 
-                     </div> 
+                   <div className="absolute -right-11 top-6 bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-10 py-0.5 rotate-45 text-xs font-bold shadow-md"> 
+                     {t('pricing.recommendedTag')} 
+                   </div> 
                    )}
                    <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-indigo-600/80 to-purple-600/80"></div>
                    <div className="p-4 md:p-6 flex-grow">
-                     <div className="flex items-start sm:items-center gap-3 mb-4">
-                      <div className="p-2 rounded-full bg-indigo-500/20 text-indigo-400 flex-shrink-0 mt-0.5 sm:mt-0"> <Zap size={16} /> </div>
-                      <div> 
-                        <div className="flex items-center"> 
-                          <h3 className="text-sm font-bold mr-1 text-gray-100">{t('pricing.dedicatedPlanTitle')}</h3> 
-                          <span className="bg-purple-500/20 text-purple-300 text-xs px-2 py-0.5 rounded-full">{t('pricing.bestForLarge')}</span>
-                        </div> 
-                        <p className="text-xs text-gray-300">{t('pricing.dedicatedPlanDesc')}</p> 
-                      </div>
-                    </div>
-                    <div className="mb-4 bg-indigo-950/30 p-3 rounded-lg">
-                      <span className="text-2xl font-bold">{dedicatedPricePerMonth.toFixed(1)}$ USD</span>
-                      <span className="text-gray-300 ml-1 text-xs">{t('pricing.monthlySuffix')}</span>
-                      <div className="mt-1 flex items-center">
-                        <div className="bg-indigo-500/20 px-1.5 py-0.5 rounded text-indigo-300 text-xs mr-2">{t('pricing.bestPerformance')}</div>
-                        <p className="text-xs text-gray-300">{t('pricing.noCommitment')}</p>
-                      </div>
-                    </div>
-                    <div className="space-y-3 mb-4">
-                      <div className="flex items-start"> 
-                        <Zap className="w-4 h-4 text-indigo-400 mt-0.5 mr-2 flex-shrink-0"/> 
-                        <div className="group relative"> 
-                          <p className="text-xs font-medium text-gray-200 flex items-center">
-                            {t('pricing.proxyPricingLabel')}
-                            <CircleHelp className="h-3.5 w-3.5 ml-1 text-gray-500 cursor-help" />
-                          </p>
-                          <div className="invisible group-hover:visible absolute left-0 bottom-full mb-2 w-48 bg-gray-900 p-2 rounded border border-gray-700 text-xs text-gray-300 shadow-lg z-10">
-                            {t('pricing.proxyPricingTooltip')}
-                          </div>
-                          <p className="text-xs text-gray-300">
-                            <span className="font-medium text-white">{calculateDedicatedProxyPricePerHour(playerCount).toFixed(4)}$ </span>
-                            {t('pricing.proxyPricingUnit')}
-                          </p> 
-                        </div> 
-                      </div>
-                      <div className="flex items-start"> 
-                        <Globe className="w-4 h-4 text-indigo-400 mt-0.5 mr-2 flex-shrink-0"/> 
-                        <div> 
-                          <p className="text-xs font-medium text-gray-200">{t('pricing.dynamicAssignmentLabel')}</p> 
-                          <p className="text-xs text-gray-300">
-                            <Check className="inline h-3 w-3 text-green-400 mr-1" />
-                            {t('pricing.dynamicAssignmentDedicated')}
-                          </p> 
-                        </div> 
-                      </div>
-                      <div className="flex items-start"> 
-                        <Shield className="w-4 h-4 text-indigo-400 mt-0.5 mr-2 flex-shrink-0"/> 
-                        <div> 
-                          <p className="text-xs font-medium text-gray-200">{t('pricing.protectionLabel')}</p> 
-                          <p className="text-xs text-gray-300">
-                            <Check className="inline h-3 w-3 text-green-400 mr-1" />
-                            {t('pricing.protectionDedicated')}
-                          </p> 
-                        </div> 
-                      </div>
-                      <div className="flex items-start"> 
-                        <Globe className="w-4 h-4 text-indigo-400 mt-0.5 mr-2 flex-shrink-0"/> 
-                        <div> 
-                          <p className="text-xs font-medium text-gray-200">{t('pricing.regionsLabel')}</p> 
-                          <p className="text-xs text-gray-300">{t('pricing.regionsDedicated')}</p> 
-                        </div> 
-                      </div>
-                      <div className="flex items-start"> 
-                        <Server className="w-4 h-4 text-indigo-400 mt-0.5 mr-2 flex-shrink-0"/> 
-                        <div> 
-                          <p className="text-xs font-medium text-gray-200">{t('pricing.controlLabel')}</p> 
-                          <p className="text-xs text-gray-300">{t('pricing.controlDedicated')}</p> 
-                        </div> 
-                      </div>
-                      
-                      <div className="pt-2 mt-2 border-t border-white/10">
-                        <p className="text-xs text-center text-purple-300">
-                          {t('pricing.idealFor')} <span className="font-medium">{t('pricing.largerServers')}</span> (100+ {t('pricing.playersLower')})
-                        </p>
-                      </div>
+                   <div className="flex items-start sm:items-center gap-3 mb-4">
+                    <div className="p-2 rounded-full bg-indigo-500/20 text-indigo-400 flex-shrink-0 mt-0.5 sm:mt-0"> <Zap size={16} /> </div>
+                    <div> 
+                    <div className="flex items-center"> 
+                      <h3 className="text-sm font-bold mr-1 text-gray-100">{t('pricing.dedicatedPlanTitle')}</h3> 
+                      <span className="bg-purple-500/20 text-purple-300 text-xs px-2 py-0.5 rounded-full">{t('pricing.bestForLarge')}</span>
+                    </div> 
+                    <p className="text-xs text-gray-300">{t('pricing.dedicatedPlanDesc')}</p> 
                     </div>
                   </div>
+                  <div className={`mb-4 ${selectedPlan === 'dedicated' ? 'bg-indigo-900/20' : 'bg-gray-800/50'} p-3 rounded-lg`}>
+                    <span className="text-2xl font-bold">{dedicatedPricePerMonth.toFixed(1)}$ USD</span>
+                    <span className="text-gray-300 ml-1 text-xs">{t('pricing.monthlySuffix')}</span>
+                    <div className="mt-1 flex items-center">
+                    <div className="bg-indigo-500/20 px-1.5 py-0.5 rounded text-indigo-300 text-xs mr-2">{t('pricing.bestPerformance')}</div>
+                    <p className="text-xs text-gray-300">{t('pricing.noCommitment')}</p>
+                    </div>
+                  </div>
+                  <div className="space-y-3 mb-4">
+                    <div className="flex items-start"> 
+                    <Zap className="w-4 h-4 text-indigo-400 mt-0.5 mr-2 flex-shrink-0"/> 
+                    <div className="group relative"> 
+                      <p className="text-xs font-medium text-gray-200 flex items-center">
+                      {t('pricing.proxyPricingLabel')}
+                      <CircleHelp className="h-3.5 w-3.5 ml-1 text-gray-500 cursor-help" />
+                      </p>
+                      <div className="invisible group-hover:visible absolute left-0 bottom-full mb-2 w-48 bg-gray-900 p-2 rounded border border-gray-700 text-xs text-gray-300 shadow-lg z-10">
+                      {t('pricing.proxyPricingTooltip')}
+                      </div>
+                      <p className="text-xs text-gray-300">
+                      <span className="font-medium text-white">{calculateDedicatedProxyPricePerHour(playerCount).toFixed(4)}$ </span>
+                      {t('pricing.proxyPricingUnit')}
+                      </p> 
+                    </div> 
+                    </div>
+                    <div className="flex items-start"> 
+                    <Globe className="w-4 h-4 text-indigo-400 mt-0.5 mr-2 flex-shrink-0"/> 
+                    <div> 
+                      <p className="text-xs font-medium text-gray-200">{t('pricing.dynamicAssignmentLabel')}</p> 
+                      <p className="text-xs text-gray-300">
+                      <Check className="inline h-3 w-3 text-green-400 mr-1" />
+                      {t('pricing.dynamicAssignmentDedicated')}
+                      </p> 
+                    </div> 
+                    </div>
+                    <div className="flex items-start"> 
+                    <Shield className="w-4 h-4 text-indigo-400 mt-0.5 mr-2 flex-shrink-0"/> 
+                    <div> 
+                      <p className="text-xs font-medium text-gray-200">{t('pricing.protectionLabel')}</p> 
+                      <p className="text-xs text-gray-300">
+                      <Check className="inline h-3 w-3 text-green-400 mr-1" />
+                      {t('pricing.protectionDedicated')}
+                      </p> 
+                    </div> 
+                    </div>
+                    <div className="flex items-start"> 
+                    <Globe className="w-4 h-4 text-indigo-400 mt-0.5 mr-2 flex-shrink-0"/> 
+                    <div> 
+                      <p className="text-xs font-medium text-gray-200">{t('pricing.regionsLabel')}</p> 
+                      <p className="text-xs text-gray-300">{t('pricing.regionsDedicated')}</p> 
+                    </div> 
+                    </div>
+                    <div className="flex items-start"> 
+                    <Server className="w-4 h-4 text-indigo-400 mt-0.5 mr-2 flex-shrink-0"/> 
+                    <div> 
+                      <p className="text-xs font-medium text-gray-200">{t('pricing.controlLabel')}</p> 
+                      <p className="text-xs text-gray-300">{t('pricing.controlDedicated')}</p> 
+                    </div> 
+                    </div>
+                    
+                    <div className="pt-2 mt-2 border-t border-white/10">
+                    <p className="text-xs text-center text-purple-300">
+                      {t('pricing.idealFor')} <span className="font-medium">{t('pricing.largerServers')}</span> (100+ {t('pricing.playersLower')})
+                    </p>
+                    </div>
+                  </div>
+                  </div>
                   <button
-                     className={`w-full rounded-t-none rounded-b-lg h-10 text-center font-semibold text-sm transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-800 focus-visible:ring-indigo-500 ${selectedPlan === 'dedicated' ? 'bg-indigo-600 text-white cursor-default' : 'bg-gray-700/50 text-gray-300 hover:bg-indigo-700 hover:text-white'}`}
-                     type="button" onClick={() => handlePlanSelect('dedicated')} disabled={selectedPlan === 'dedicated'}
+                   className={`w-full rounded-t-none rounded-b-lg h-10 text-center font-semibold text-sm transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-800 focus-visible:ring-indigo-500 ${selectedPlan === 'dedicated' ? 'bg-indigo-600 text-white cursor-default' : 'bg-gray-700/50 text-gray-300 hover:bg-indigo-700 hover:text-white'}`}
+                   type="button" onClick={() => handlePlanSelect('dedicated')} disabled={selectedPlan === 'dedicated'}
                   >
-                    {selectedPlan === 'dedicated' ? t('pricing.currentPlan') : t('pricing.selectPlan')}
+                  {selectedPlan === 'dedicated' ? t('pricing.currentPlan') : t('pricing.selectPlan')}
                   </button>
                 </div>
-              </motion.div>
+                </motion.div>
 
               {/* --- Summary/Recommendation Bar --- */}
               <motion.div variants={fadeIn} className="col-span-12">
