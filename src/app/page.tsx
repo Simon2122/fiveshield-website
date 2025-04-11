@@ -48,21 +48,21 @@ const calculateServicePricePerDay = (players: number): number => {
   let dailyCost = basePricePerDay + dailyCacheCost + dailyReadCost + dailyWriteCost;
 
   // Add service profit margin (50% profit)
-  const profitMargin = 1.65;
+  const profitMargin = 1.30;
   dailyCost = dailyCost * profitMargin;
 
   return dailyCost;
 };
 
 const calculateSharedProxyPricePerHour = (players: number): number => {
-    const proxies = Math.ceil(players / 20);
+    const proxies = Math.ceil(players / 16);
     const costPerProxy = 0.008;
     const ratePerProxy = 1.25;
   return proxies * costPerProxy * ratePerProxy;
 };
 
 const calculateDedicatedProxyPricePerHour = (players: number): number => {
-  const proxies = Math.max(Math.ceil(players / 20), 5);
+  const proxies = Math.max(Math.ceil(players / 16), 5);
   const costPerProxy = 0.013;
   return proxies * costPerProxy;
 };
