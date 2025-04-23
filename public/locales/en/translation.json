@@ -10,7 +10,10 @@
       "discordAria": "Join Discord",
       "panelLink": "Panel (Soon)",
       "closeMenuAria": "Close menu",
-      "openMenuAria": "Open menu"
+      "openMenuAria": "Open menu",
+      "language": "Language",
+      "switchToEnglish": "Switch to English",
+      "switchToFrench": "Switch to French"
     },
     "hero": {
       "title": "fiveshield",
@@ -78,7 +81,20 @@
       "idealFor": "Ideal for",
       "largerServers": "larger servers",
       "playersLower": "players",
-      "estimatedBilling": "Monthly estimated billing based on current settings"
+      "estimatedBilling": "Monthly estimated billing based on current settings",
+      "estimatedProxies": "Estimated Proxies",
+      "connectionLatency": "Connection Latency",
+      "pingLabel": "Ping",
+      "ddosProtectionLabel": "DDoS Protection",
+      "ddosCapacity": "20 Tbps Capacity",
+      "uptimeLabel": "Uptime",
+      "uptimeGuarantee": "99.9% uptime",
+      "idealForDescription": "Ideal for high-traffic servers requiring maximum protection",
+      "baseService": "Base Service",
+      "ddosProtected": "DDoS Protected",
+      "currency": "USD",
+      "uptimeValue": "99.9%",
+      "pingValue": "< 20ms"
     },
     "architecture": {
       "title": "Protection Architecture",
