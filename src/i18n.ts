@@ -58,10 +58,5 @@ const initI18n = () => {
   initialized = true;
 };
 
-// Initialize on import in client-side environments
-if (typeof window !== 'undefined') {
-  initI18n();
-}
-
 export default i18n;
 export { initI18n, resources };

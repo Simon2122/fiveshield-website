@@ -63,7 +63,9 @@ export function AttackLines() {
   // New: use a ref for mutable line data and a frame counter
   const linesRef = useRef<AttackLineData[]>(lines);
   const frameCounter = useRef(0);
-  const FRAME_UPDATE_INTERVAL = 4; // update state every 4 frames
+  // Increase interval slightly to reduce React state updates.
+  // Trade-off: Might make line appearance/disappearance slightly less smooth.
+  const FRAME_UPDATE_INTERVAL = 6; // update state every 6 frames (was 4)
 
   useFrame(({ clock }) => {
     frameCounter.current++;
