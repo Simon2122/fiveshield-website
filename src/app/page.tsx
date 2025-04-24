@@ -17,7 +17,7 @@ import {
 
 // Improved lazy loading with preload hint for the heavy component
 const GlobeVisualization = lazy(() =>
-  new Promise<{ default: React.ComponentType<any> }>((resolve) => { // Explicitly type the Promise resolution
+  new Promise<{ default: React.ComponentType<unknown> }>((resolve) => { // Explicitly type the Promise resolution
     const delay = process.env.NODE_ENV === 'production' ? 1000 : 0;
     setTimeout(() => {
       // Resolve the promise with the result of the import() call
@@ -103,11 +103,6 @@ export default function HomePage() {
   const servicePricePerMonth = useMemo(() => calculateServicePricePerDay(playerCount) * 30, [playerCount]);
   const sharedPricePerMonth = useMemo(() => calculateSharedProxyPricePerHour(playerCount) * 24 * 30, [playerCount]);
   const dedicatedPricePerMonth = useMemo(() => calculateDedicatedProxyPricePerHour(playerCount) * 24 * 30, [playerCount]);
-  const totalPricePerMonth = useMemo(() => {
-      const base = servicePricePerMonth;
-      const planPrice = selectedPlan === 'shared' ? sharedPricePerMonth : dedicatedPricePerMonth;
-      return base + planPrice;
-  }, [servicePricePerMonth, sharedPricePerMonth, dedicatedPricePerMonth, selectedPlan]);
 
   const handlePlayerCountChange = useCallback((value: number | string) => {
       let num = typeof value === 'string' ? parseInt(value, 10) : value;
@@ -119,10 +114,6 @@ export default function HomePage() {
   const handleSliderChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
       handlePlayerCountChange(parseInt(event.target.value, 10));
   }, [handlePlayerCountChange]); // Depends on handlePlayerCountChange
-
-  const handlePlanSelect = useCallback((plan: 'shared' | 'dedicated') => {
-      setSelectedPlan(plan);
-  }, []); // Empty dependency array
 
   const sliderPercentage = useMemo(() => {
       const range = MAX_PLAYERS - MIN_PLAYERS;
@@ -137,10 +128,6 @@ export default function HomePage() {
       return null;
   }, [playerCount]);
 
-  const showRecommendationWarning = useMemo(() => {
-      return recommendedPlan !== null && selectedPlan !== recommendedPlan;
-  }, [selectedPlan, recommendedPlan]);
-
   // Add the changeLanguage function
   const changeLanguage = useCallback((lng: 'en' | 'fr') => {
     i18n.changeLanguage(lng);
@@ -151,12 +138,7 @@ export default function HomePage() {
   useEffect(() => {
     // This effect runs only once on the client after initial mount
     setIsClient(true);
-    
-    // Set up lang attribute just once during initialization
-    if (currentLanguage) {
-      document.documentElement.lang = currentLanguage;
-    }
-    
+
     // Memory cleanup in development
     if (process.env.NODE_ENV === 'development') {
       return () => {
