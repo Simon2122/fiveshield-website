@@ -18,7 +18,7 @@ interface AboutSectionProps {
 }
 
 // Add staggerContainer back to props if needed, otherwise keep it removed if truly unused
-const AboutSection: React.FC<AboutSectionProps> = ({ t, fadeIn, staggerContainer, memoizedHandleOvhImageError }) => {
+const AboutSection: React.FC<AboutSectionProps> = ({ t, fadeIn, memoizedHandleOvhImageError }) => {
     // If staggerContainer is used within this component, keep it in the props destructuring above.
     // If not, remove it from the destructuring: const AboutSection: React.FC<AboutSectionProps> = ({ t, fadeIn, memoizedHandleOvhImageError }) => {
     return (
