@@ -39,6 +39,7 @@ export default function RootLayout({
       <head>
         {/* Preload critical resources */}
         <link rel="preload" href="/blanc.png" as="image" type="image/png" />
+        <link rel="preload" href="/ovhcloud.png" as="image" type="image/png" />
       </head>
       {/* Apply the font class to the body */}
       <body className={`${inter.className} antialiased`}>

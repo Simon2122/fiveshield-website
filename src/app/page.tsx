@@ -6,6 +6,7 @@ import { initI18n } from '../i18n';
 initI18n(); // Explicitly initialize once before component renders
 
 import React, { useState, useEffect, Suspense, lazy, useMemo, useCallback } from 'react';
+// Remove Head import: import Head from 'next/head';
 import { useTranslation, Trans } from 'react-i18next';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
@@ -175,6 +176,10 @@ export default function HomePage() {
   // --- JSX Return ---
   return (
     <Suspense fallback={renderLoader()}>
+      {/* Remove Head component for preloading */}
+      {/* <Head>
+        <link rel="preload" href="/blanc.png" as="image" />
+      </Head> */}
       <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-900 to-indigo-900/40 text-white font-sans overflow-x-hidden">
 
         {/* --- Navigation Bar --- */}
