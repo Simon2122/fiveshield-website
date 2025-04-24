@@ -1,15 +1,18 @@
 'use client';
 
 import React from 'react';
-import { motion } from 'framer-motion';
+// Import Variants type from framer-motion
+import { motion, Variants } from 'framer-motion';
 import { TFunction } from 'i18next';
-
+import { useTranslation } from 'react-i18next';
 import { Users, Cloud, Cpu, ArrowRight, Zap } from 'lucide-react';
+
+// Remove custom AnimationVariant type
 
 interface CachingSectionProps {
     t: TFunction;
-    fadeIn: any;
-    staggerContainer: any;
+    fadeIn: Variants; // Use Variants type
+    staggerContainer: Variants; // Use Variants type
 }
 
 const CachingSection: React.FC<CachingSectionProps> = ({ t, fadeIn, staggerContainer }) => {

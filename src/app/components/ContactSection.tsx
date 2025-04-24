@@ -1,18 +1,24 @@
 'use client';
 
 import React from 'react';
-import { motion } from 'framer-motion';
-import { CheckCircle2 } from 'lucide-react';
+// Import Variants type from framer-motion
+import { motion, Variants } from 'framer-motion';
 import { TFunction } from 'i18next';
+import { useTranslation } from 'react-i18next';
+import { CheckCircle2 } from 'lucide-react';
 
+// Remove custom AnimationVariant type
 
 interface ContactSectionProps {
     t: TFunction;
-    fadeIn: any;
-    staggerContainer: any;
+    // Keep Variants type definition even if props are unused in the function signature
+    // This maintains consistency with the parent component passing the props.
+    fadeIn: Variants;
+    staggerContainer: Variants;
 }
 
-const ContactSection: React.FC<ContactSectionProps> = ({ t, fadeIn, staggerContainer }) => {
+// Keep unused props (fadeIn, staggerContainer) removed from the function signature
+const ContactSection: React.FC<ContactSectionProps> = ({ t }) => {
     return (
         <section id="contact" className="py-20 md:py-32 px-4 relative">
             <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-indigo-900/40 to-gray-900 opacity-95 z-0"></div>

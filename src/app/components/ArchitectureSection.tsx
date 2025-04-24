@@ -1,16 +1,18 @@
 'use client';
 
 import React from 'react';
-import { motion } from 'framer-motion';
-// Import TFunction type
+// Import Variants type from framer-motion
+import { motion, Variants } from 'framer-motion';
 import { TFunction } from 'i18next';
+import { useTranslation } from 'react-i18next';
 import { Layers, Route, Server, Cpu, ArrowRight } from 'lucide-react';
 
+// Remove custom AnimationVariant type
+
 interface ArchitectureSectionProps {
-    // Use the imported TFunction type
     t: TFunction;
-    fadeIn: any;
-    staggerContainer: any;
+    fadeIn: Variants; // Use Variants type
+    staggerContainer: Variants; // Use Variants type
 }
 
 const ArchitectureSection: React.FC<ArchitectureSectionProps> = ({ t, fadeIn, staggerContainer }) => {

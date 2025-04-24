@@ -1,16 +1,18 @@
 'use client';
 
 import React from 'react';
-import { motion } from 'framer-motion';
+// Import Variants type from framer-motion
+import { motion, Variants } from 'framer-motion';
 import { TFunction } from 'i18next';
-import { Trans } from 'react-i18next';
+import { useTranslation, Trans } from 'react-i18next';
 import { Users, Settings, ShieldCheck } from 'lucide-react';
 
-// Define props type including animation variants
+// Remove custom AnimationVariant type
+
 interface InstallationSectionProps {
     t: TFunction;
-    fadeIn: any; // Consider defining a more specific type if available
-    staggerContainer: any; // Consider defining a more specific type if available
+    fadeIn: Variants; // Use Variants type
+    staggerContainer: Variants; // Use Variants type
 }
 
 const InstallationSection: React.FC<InstallationSectionProps> = ({ t, fadeIn, staggerContainer }) => {
