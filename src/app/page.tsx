@@ -62,13 +62,6 @@ const calculateServicePricePerDay = (players: number): number => {
   return dailyCost;
 };
 
-const calculateSharedProxyPricePerHour = (players: number): number => {
-    const proxies = Math.ceil(players / 16);
-    const costPerProxy = 0.008;
-    const ratePerProxy = 1.25;
-  return proxies * costPerProxy * ratePerProxy;
-};
-
 const calculateDedicatedProxyPricePerHour = (players: number): number => {
   const proxies = Math.max(Math.ceil(players / 16), 5);
   const costPerProxy = 0.013;
