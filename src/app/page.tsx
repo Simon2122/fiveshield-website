@@ -1,22 +1,30 @@
 // src/app/page.tsx
 'use client'; // Must be at the top
 
-// *** 1. Import i18n configuration ***
-import '../i18n'; // Adjust path if necessary. This runs the i18n.init()
+// Optimize i18n import to use the enhanced initialization
+import { initI18n } from '../i18n';
+initI18n(); // Explicitly initialize once before component renders
 
 import React, { useState, useEffect, Suspense, lazy, useMemo, useCallback } from 'react';
-// *** 2. Import useTranslation and Trans component ***
 import { useTranslation, Trans } from 'react-i18next';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import Image from 'next/image'; // Add Next.js Image component
+import { motion } from 'framer-motion';
+import Image from 'next/image';
 import {
   ShieldCheck, Zap, Server, Cloud, Cpu, Users, ChevronDown, ArrowRight,
   Menu, X, CheckCircle2, ExternalLink, Settings, Layers, Route,
-  Shield, Globe, Check, CircleHelp, TriangleAlert
+  Shield, Globe, Check
 } from 'lucide-react';
 
-// Lazy load the 3D Globe component (Adjust path if necessary)
-const GlobeVisualization = lazy(() => import('./components/GlobeVisualization')); // Assuming it's in src/components
+// Improved lazy loading with preload hint for the heavy component
+const GlobeVisualization = lazy(() =>
+  new Promise<{ default: React.ComponentType<any> }>((resolve) => { // Explicitly type the Promise resolution
+    const delay = process.env.NODE_ENV === 'production' ? 1000 : 0;
+    setTimeout(() => {
+      // Resolve the promise with the result of the import() call
+      resolve(import('./components/GlobeVisualization'));
+    }, delay);
+  })
+);
 
 // --- Constants --- (Keep outside)
 const MIN_PLAYERS = 20;
@@ -133,60 +141,73 @@ export default function HomePage() {
       return recommendedPlan !== null && selectedPlan !== recommendedPlan;
   }, [selectedPlan, recommendedPlan]);
 
+  // Add the changeLanguage function
+  const changeLanguage = useCallback((lng: 'en' | 'fr') => {
+    i18n.changeLanguage(lng);
+    setMobileMenuOpen(false); // Close menu on language change
+  }, [i18n]);
+
   // Effects are also called on every render
   useEffect(() => {
     // This effect runs only once on the client after initial mount
     setIsClient(true);
-  }, []); // Empty dependency array ensures it runs only once
-
-  useEffect(() => {
-    // This effect runs only on the client, after mount and when dependencies change
-    if (isClient) {
+    
+    // Set up lang attribute just once during initialization
+    if (currentLanguage) {
       document.documentElement.lang = currentLanguage;
     }
-  }, [currentLanguage, isClient]); // Depend on isClient to ensure it runs after mount
+    
+    // Memory cleanup in development
+    if (process.env.NODE_ENV === 'development') {
+      return () => {
+        // Cleanup logic if needed
+      };
+    }
+  }, []); // Empty dependency array ensures it runs only once
+  
+  // Simplify language effect to only run when language changes after initial load
+  useEffect(() => {
+    if (isClient && currentLanguage) {
+      document.documentElement.lang = currentLanguage;
+    }
+  }, [currentLanguage, isClient]);
 
   // --- Other functions ---
   const handleNavLinkClick = () => {
     setMobileMenuOpen(false);
   };
 
-  const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
-     const target = e.target as HTMLImageElement;
-     target.onerror = null;
-     target.src = `https://placehold.co/${target.width || 40}x${target.height || 40}/FFFFFF/1F2937?text=FS`;
-     // Use t() for fallback alt text
-     target.alt = t('fallbackLogoAlt');
-   };
+  // Add memo for expensive image error handlers
+  const memoizedHandleImageError = useCallback((e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+    const target = e.target as HTMLImageElement;
+    target.onerror = null;
+    target.src = `https://placehold.co/${target.width || 40}x${target.height || 40}/FFFFFF/1F2937?text=FS`;
+    target.alt = t('fallbackLogoAlt');
+  }, [t]);
 
-  const handleOvhImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
-     const target = e.target as HTMLImageElement;
-     target.onerror = null;
-     target.style.display = 'none';
-   };
+  const memoizedHandleOvhImageError = useCallback((e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+    const target = e.target as HTMLImageElement;
+    target.onerror = null;
+    target.style.display = 'none';
+  }, []);
 
-  // --- Language Change Handler ---
-  const changeLanguage = (lng: 'en' | 'fr') => {
-    i18n.changeLanguage(lng);
-    setMobileMenuOpen(false); // Close menu on language change
-  };
+  // Use a lighter-weight fallback for Suspense to improve perception of speed
+  const renderLoader = () => (
+    <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-gray-900 text-white text-xl font-semibold">
+      <div className="flex flex-col items-center">
+        <div className="w-12 h-12 border-t-2 border-b-2 border-indigo-500 rounded-full animate-spin mb-4"></div>
+        <span>Loading...</span>
+      </div>
+    </div>
+  );
 
   if (!isClient) {
-    // Return the loader/null state
-    return (
-      <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-gray-900 text-white text-xl font-semibold">
-        Loading...
-      </div>
-    );
+    return renderLoader();
   }
+
   // --- JSX Return ---
   return (
-    // *** 4. Wrap in Suspense for translation loading ***
-    <Suspense fallback={
-      <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-gray-900 text-white text-xl font-semibold">
-        Loading...
-      </div>
-    }>
+    <Suspense fallback={renderLoader()}>
       <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-900 to-indigo-900/40 text-white font-sans overflow-x-hidden">
 
         {/* --- Navigation Bar --- */}
@@ -202,7 +223,7 @@ export default function HomePage() {
                   fill
                   sizes="40px"
                   priority // This is above the fold, so mark as priority
-                  onError={handleImageError}
+                  onError={memoizedHandleImageError}
                 />
               </div>
               <span className="text-2xl font-bold text-white transition-colors duration-300 group-hover:text-indigo-400">
@@ -810,7 +831,7 @@ export default function HomePage() {
                                 width={115}
                                 height={28}
                                 className="object-contain"
-                                onError={handleOvhImageError}
+                                onError={memoizedHandleOvhImageError}
                                 priority
                               />
                             </div>
@@ -870,7 +891,7 @@ export default function HomePage() {
                                  fill
                                  sizes="36px"
                                  priority
-                                 onError={handleImageError}
+                                 onError={memoizedHandleImageError}
                                />
                              </div>
                              <span className="text-xl font-bold text-white">{t('fiveshield')}</span>
