@@ -4,15 +4,12 @@ import React from 'react';
 // Import Variants type from framer-motion
 import { motion, Variants } from 'framer-motion';
 import { TFunction } from 'i18next';
-import { useTranslation } from 'react-i18next';
 import { CheckCircle2 } from 'lucide-react';
 
 // Remove custom AnimationVariant type
 
 interface ContactSectionProps {
     t: TFunction;
-    // Keep Variants type definition even if props are unused in the function signature
-    // This maintains consistency with the parent component passing the props.
     fadeIn: Variants;
     staggerContainer: Variants;
 }

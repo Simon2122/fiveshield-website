@@ -4,7 +4,6 @@ import React from 'react';
 // Import Variants type from framer-motion
 import { motion, Variants } from 'framer-motion';
 import { TFunction } from 'i18next';
-import { useTranslation } from 'react-i18next';
 import { Users, Cloud, Cpu, ArrowRight, Zap } from 'lucide-react';
 
 // Remove custom AnimationVariant type
