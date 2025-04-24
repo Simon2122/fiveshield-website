@@ -16,16 +16,7 @@ import {
   Shield, Globe, Check
 } from 'lucide-react';
 
-// Improved lazy loading with preload hint for the heavy component
-const GlobeVisualization = lazy(() =>
-  new Promise<{ default: React.ComponentType<unknown> }>((resolve) => { // Explicitly type the Promise resolution
-    const delay = process.env.NODE_ENV === 'production' ? 1000 : 0;
-    setTimeout(() => {
-      // Resolve the promise with the result of the import() call
-      resolve(import('./components/GlobeVisualization'));
-    }, delay);
-  })
-);
+const GlobeVisualization = lazy(() => import('./components/GlobeVisualization'));
 
 // --- Constants --- (Keep outside)
 const MIN_PLAYERS = 20;
@@ -81,6 +72,13 @@ const staggerContainer = {
   visible: { transition: { staggerChildren: 0.15 } },
 };
 
+// --- Remove Debounce Hook ---
+/*
+function useDebounce<T>(value: T, delay: number): T {
+  // ... removed debounce hook code ...
+}
+*/
+
 
 export default function HomePage() {
   // *** 3. Use the useTranslation hook ***
@@ -89,30 +87,35 @@ export default function HomePage() {
 
   // --- Hooks and State ---
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [playerCount, setPlayerCount] = useState(50);
+  // State for immediate slider/input feedback
+  const [immediatePlayerCount, setImmediatePlayerCount] = useState(50);
+  // Remove debounced state: const debouncedPlayerCount = useDebounce(immediatePlayerCount, 250); // Debounce by 250ms
   const [isClient, setIsClient] = useState(false); // State for hydration fix
 
   // --- Memos & Callbacks --- (Calculations remain the same, text passed to t())
-  const servicePricePerMonth = useMemo(() => calculateServicePricePerDay(playerCount) * 30, [playerCount]);
-  const dedicatedPricePerMonth = useMemo(() => calculateDedicatedProxyPricePerHour(playerCount) * 24 * 30, [playerCount]);
+  // Calculate prices based on the immediate player count for smoothness
+  const servicePricePerMonth = useMemo(() => calculateServicePricePerDay(immediatePlayerCount) * 30, [immediatePlayerCount]);
+  const dedicatedPricePerMonth = useMemo(() => calculateDedicatedProxyPricePerHour(immediatePlayerCount) * 24 * 30, [immediatePlayerCount]);
 
+  // Update the immediate value instantly for responsive UI
   const handlePlayerCountChange = useCallback((value: number | string) => {
       let num = typeof value === 'string' ? parseInt(value, 10) : value;
       if (isNaN(num)) num = MIN_PLAYERS;
       const clampedValue = Math.max(MIN_PLAYERS, Math.min(MAX_PLAYERS, num));
-      setPlayerCount(clampedValue);
+      setImmediatePlayerCount(clampedValue); // Update immediate state
   }, []); // Empty dependency array
 
   const handleSliderChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
       handlePlayerCountChange(parseInt(event.target.value, 10));
   }, [handlePlayerCountChange]); // Depends on handlePlayerCountChange
 
+  // Slider percentage should reflect the immediate value for smoothness
   const sliderPercentage = useMemo(() => {
       const range = MAX_PLAYERS - MIN_PLAYERS;
-      const valueInRange = playerCount - MIN_PLAYERS;
+      const valueInRange = immediatePlayerCount - MIN_PLAYERS;
       if (range === 0) return 0;
       return (valueInRange / range) * 100;
-  }, [playerCount]);
+  }, [immediatePlayerCount]);
 
   // Add the changeLanguage function
   const changeLanguage = useCallback((lng: 'en' | 'fr') => {
@@ -456,7 +459,8 @@ export default function HomePage() {
                           min={MIN_PLAYERS}
                           max={MAX_PLAYERS}
                           type="number"
-                          value={playerCount}
+                          // Use immediatePlayerCount for the input value for responsiveness
+                          value={immediatePlayerCount}
                           onChange={(e) => handlePlayerCountChange(e.target.value)}
                         />
                         <span className="text-xs text-gray-400">{t('pricing.playersUnit')}</span>
@@ -468,7 +472,8 @@ export default function HomePage() {
                           type="range"
                           min={MIN_PLAYERS}
                           max={MAX_PLAYERS}
-                          value={playerCount}
+                          // Use immediatePlayerCount for the slider value for responsiveness
+                          value={immediatePlayerCount}
                           onChange={handleSliderChange}
                           className="absolute w-full h-2 bg-indigo-900/30 rounded-full appearance-none cursor-pointer z-10
                                      [&::-webkit-slider-runnable-track]:rounded-full
@@ -482,6 +487,7 @@ export default function HomePage() {
                          <div className="absolute top-1/2 left-0 transform -translate-y-1/2 h-2 w-full bg-indigo-900/30 rounded-full pointer-events-none"></div>
                         <div
                             className="absolute top-1/2 left-0 transform -translate-y-1/2 h-2 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 pointer-events-none"
+                            // Style based on immediatePlayerCount via sliderPercentage
                             style={{ width: `max(0.5rem, min(calc(${sliderPercentage}% + ${5 - sliderPercentage * 0.1}px), calc(100% - 0.5rem)))` }}
                         ></div>
                     </div>
@@ -501,13 +507,14 @@ export default function HomePage() {
                     <h3 className="text-base font-bold text-gray-200">{t('pricing.includedServicesTitle')}</h3>
                   </div>
                   <div className="flex flex-col md:flex-row gap-4 md:gap-6">
-                    {/* Price */}
+                    {/* Price - Uses servicePricePerMonth (already debounced) */}
                     <div className="md:w-1/4 flex-shrink-0">
                       <div className="flex items-baseline mb-1">
                         <span className="text-xl font-bold">{servicePricePerMonth.toFixed(1)}$ USD</span>
                         <span className="ml-1 text-xs text-gray-400">{t('pricing.monthlySuffix')}</span>
                       </div>
-                      <p className="text-xs text-gray-500">{t('pricing.dailyCalculation', { price: calculateServicePricePerDay(playerCount).toFixed(1) })}</p>
+                      {/* Use immediatePlayerCount for daily calculation display */}
+                      <p className="text-xs text-gray-500">{t('pricing.dailyCalculation', { price: calculateServicePricePerDay(immediatePlayerCount).toFixed(1) })}</p>
                     </div>
                     {/* Features */}
                     <div className="md:w-3/4 grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -534,6 +541,7 @@ export default function HomePage() {
                     </div>
                   </div>
                   <div className="mb-4 bg-indigo-900/20 p-3 rounded-lg">
+                    {/* Use dedicatedPricePerMonth (already debounced) */}
                     <span className="text-2xl font-bold">{dedicatedPricePerMonth.toFixed(1)}$ USD</span>
                     <span className="text-gray-300 ml-1 text-xs">{t('pricing.monthlySuffix')}</span>
                     <div className="mt-1 flex items-center">
@@ -549,7 +557,8 @@ export default function HomePage() {
                       <div> 
                         <p className="text-xs font-medium text-gray-200">{t('pricing.proxyPricingLabel')}</p>
                         <p className="text-xs text-gray-300">
-                          <span className="font-medium text-white">{Math.max(Math.ceil(playerCount / 16), 5)} × {calculateDedicatedProxyPricePerHour(playerCount / Math.max(Math.ceil(playerCount / 16), 5)).toFixed(4)}$ </span>
+                          {/* Use immediatePlayerCount for proxy count and price calculation */}
+                          <span className="font-medium text-white">{Math.max(Math.ceil(immediatePlayerCount / 16), 5)} × {calculateDedicatedProxyPricePerHour(immediatePlayerCount / Math.max(Math.ceil(immediatePlayerCount / 16), 5)).toFixed(4)}$ </span>
                           {t('pricing.proxyPricingUnit')}
                         </p> 
                       </div> 
@@ -625,6 +634,7 @@ export default function HomePage() {
                     <div className="flex items-center gap-4 flex-shrink-0 mt-3 md:mt-0">
                       <div className="text-right">
                         <p className="text-xs text-gray-400 mb-0">{t('pricing.totalPriceLabel')}</p>
+                        {/* Use immediate values for total */}
                         <p className="text-2xl font-bold text-indigo-300">{(servicePricePerMonth + dedicatedPricePerMonth).toFixed(1)}$ USD</p>
                       </div>
                       <a
