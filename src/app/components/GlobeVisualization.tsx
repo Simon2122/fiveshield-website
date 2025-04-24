@@ -1,8 +1,8 @@
 // src/components/GlobeVisualization.tsx (No Changes Needed Here)
 'use client';
 
-import React, { useRef, useMemo, Suspense } from 'react';
-import { Canvas, useFrame, useThree } from '@react-three/fiber';
+import React, { useRef, Suspense } from 'react'; // Removed useMemo
+import { Canvas, useFrame } from '@react-three/fiber'; // Removed useThree
 import * as THREE from 'three';
 import { AttackLines } from './AttackLines'; // Ensure this is imported
 

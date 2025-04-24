@@ -96,12 +96,10 @@ export default function HomePage() {
   // --- Hooks and State ---
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [playerCount, setPlayerCount] = useState(50);
-  const [selectedPlan, setSelectedPlan] = useState<'dedicated' | 'shared'>('dedicated');
   const [isClient, setIsClient] = useState(false); // State for hydration fix
 
   // --- Memos & Callbacks --- (Calculations remain the same, text passed to t())
   const servicePricePerMonth = useMemo(() => calculateServicePricePerDay(playerCount) * 30, [playerCount]);
-  const sharedPricePerMonth = useMemo(() => calculateSharedProxyPricePerHour(playerCount) * 24 * 30, [playerCount]);
   const dedicatedPricePerMonth = useMemo(() => calculateDedicatedProxyPricePerHour(playerCount) * 24 * 30, [playerCount]);
 
   const handlePlayerCountChange = useCallback((value: number | string) => {
@@ -120,12 +118,6 @@ export default function HomePage() {
       const valueInRange = playerCount - MIN_PLAYERS;
       if (range === 0) return 0;
       return (valueInRange / range) * 100;
-  }, [playerCount]);
-
-  const recommendedPlan: 'shared' | 'dedicated' | null = useMemo(() => {
-      if (playerCount < 100) return 'shared';
-      if (playerCount >= 100) return 'dedicated';
-      return null;
   }, [playerCount]);
 
   // Add the changeLanguage function
