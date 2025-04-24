@@ -151,15 +151,19 @@ export default function HomePage() {
   // Add memo for expensive image error handlers
   const memoizedHandleImageError = useCallback((e: React.SyntheticEvent<HTMLImageElement, Event>) => {
     const target = e.target as HTMLImageElement;
-    target.onerror = null;
+    // Set fallback src first
     target.src = `https://placehold.co/${target.width || 40}x${target.height || 40}/FFFFFF/1F2937?text=FS`;
     target.alt = t('fallbackLogoAlt');
+    // Then remove the handler to prevent loops if the fallback also fails
+    target.onerror = null;
   }, [t]);
 
   const memoizedHandleOvhImageError = useCallback((e: React.SyntheticEvent<HTMLImageElement, Event>) => {
     const target = e.target as HTMLImageElement;
-    target.onerror = null;
+    // Hide the image first
     target.style.display = 'none';
+    // Then remove the handler
+    target.onerror = null;
   }, []);
 
   // Use a lighter-weight fallback for Suspense to improve perception of speed
