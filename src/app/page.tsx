@@ -3,11 +3,9 @@
 
 // Optimize i18n import to use the enhanced initialization
 import { initI18n } from '../i18n';
-initI18n(); // Explicitly initialize once before component renders
 
 // Remove 'lazy' from the react import
 import React, { useState, useEffect, Suspense, useCallback } from 'react';
-// Remove Head import: import Head from 'next/head';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
@@ -52,6 +50,8 @@ export default function HomePage() {
   }, [i18n]);
 
   useEffect(() => {
+    // Initialize i18n here, only on the client side after mount
+    initI18n(); 
     setIsClient(true);
     // Memory cleanup in development
     if (process.env.NODE_ENV === 'development') {
@@ -59,7 +59,7 @@ export default function HomePage() {
         // Cleanup logic if needed
       };
     }
-  }, []);
+  }, []); // Empty dependency array ensures it runs only once on mount
 
   useEffect(() => {
     if (isClient && currentLanguage) {

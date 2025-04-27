@@ -23,8 +23,14 @@ let initialized = false;
 const initI18n = () => {
   if (initialized) return;
   
-  i18n
-    .use(LanguageDetector)
+  let i18nChain = i18n;
+
+  // Only add the LanguageDetector middleware on the client side
+  if (typeof window !== 'undefined') {
+    i18nChain = i18nChain.use(LanguageDetector);
+  }
+
+  i18nChain
     .use(initReactI18next)
     .init({
       resources,
@@ -43,7 +49,7 @@ const initI18n = () => {
         transKeepBasicHtmlNodesFor: ['br', 'strong', 'i', 'span'],
       },
 
-      // Use more efficient options for detection
+      // Detection options are only relevant if LanguageDetector is used (client-side)
       detection: {
         order: ['path', 'cookie', 'localStorage', 'navigator', 'htmlTag'],
         caches: ['localStorage', 'cookie'],
