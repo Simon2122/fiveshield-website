@@ -3,6 +3,7 @@
 
 // Optimize i18n import to use the enhanced initialization
 import { initI18n } from '../i18n';
+initI18n(); // Initialize i18n before the component renders
 
 // Remove 'lazy' from the react import
 import React, { useState, useEffect, Suspense, useCallback } from 'react';
@@ -50,8 +51,6 @@ export default function HomePage() {
   }, [i18n]);
 
   useEffect(() => {
-    // Initialize i18n here, only on the client side after mount
-    initI18n(); 
     setIsClient(true);
     // Memory cleanup in development
     if (process.env.NODE_ENV === 'development') {
