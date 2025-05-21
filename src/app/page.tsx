@@ -45,6 +45,14 @@ export default function HomePage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isClient, setIsClient] = useState(false);
 
+  // State for navigation bar logo (uses /blanc.png)
+  const [navLogoSrc, setNavLogoSrc] = useState("/blanc.png");
+  const [navLogoError, setNavLogoError] = useState(false);
+
+  // State for footer logo (uses /blanc.png)
+  const [footerLogoSrc, setFooterLogoSrc] = useState("/blanc.png");
+  const [footerLogoError, setFooterLogoError] = useState(false);
+
   const changeLanguage = useCallback((lng: 'en' | 'fr') => {
     i18n.changeLanguage(lng);
     setMobileMenuOpen(false);
@@ -70,14 +78,21 @@ export default function HomePage() {
     setMobileMenuOpen(false);
   };
 
-  const memoizedHandleImageError = useCallback((e: React.SyntheticEvent<HTMLImageElement, Event>) => {
-    const target = e.target as HTMLImageElement;
-    // Set fallback src first
-    target.src = `https://placehold.co/${target.width || 40}x${target.height || 40}/FFFFFF/1F2937?text=FS`;
-    target.alt = t('fallbackLogoAlt');
-    // Then remove the handler to prevent loops if the fallback also fails
-    target.onerror = null;
-  }, [t]);
+  // Error handler for the navigation bar logo
+  const handleNavLogoError = useCallback(() => {
+    if (!navLogoError) {
+      setNavLogoSrc(`https://placehold.co/40x40/FFFFFF/1F2937?text=FS`);
+      setNavLogoError(true); // Prevent re-triggering
+    }
+  }, [navLogoError]);
+
+  // Error handler for the footer logo
+  const handleFooterLogoError = useCallback(() => {
+    if (!footerLogoError) {
+      setFooterLogoSrc(`https://placehold.co/36x36/FFFFFF/1F2937?text=FS`);
+      setFooterLogoError(true); // Prevent re-triggering
+    }
+  }, [footerLogoError]);
 
   const memoizedHandleOvhImageError = useCallback((e: React.SyntheticEvent<HTMLImageElement, Event>) => {
     const target = e.target as HTMLImageElement;
@@ -111,13 +126,13 @@ export default function HomePage() {
             <a href="#" className="flex items-center space-x-2 group flex-shrink-0">
               <div className="relative h-10 w-10 rounded-md overflow-hidden">
                 <Image
-                  src="/blanc.png"
+                  src={navLogoSrc} // Uses state variable
                   alt={t('fallbackLogoAlt') || "FiveShield Logo"}
                   className="transition-transform duration-300 group-hover:scale-110"
                   fill
                   sizes="40px"
                   priority
-                  onError={memoizedHandleImageError}
+                  onError={handleNavLogoError} // Uses specific error handler
                 />
               </div>
               <span className="text-2xl font-bold text-white transition-colors duration-300 group-hover:text-indigo-400">
@@ -279,12 +294,12 @@ export default function HomePage() {
                 <div className="flex items-center space-x-3 mb-5">
                   <div className="relative h-9 w-9 rounded-md overflow-hidden">
                     <Image
-                      src="/blanc.png"
+                      src={footerLogoSrc} // Uses state variable
                       alt={t('fallbackLogoAlt') || "FiveShield Logo"}
                       fill
                       sizes="36px"
                       priority
-                      onError={memoizedHandleImageError}
+                      onError={handleFooterLogoError} // Uses specific error handler
                     />
                   </div>
                   <span className="text-xl font-bold text-white">{t('fiveshield')}</span>
